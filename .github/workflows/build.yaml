@@ -44,7 +44,7 @@ jobs:
 
       - name: Build
         run: >
-          dotnet build --no-restore -c Release
+          dotnet build -c Release
           -p:PackageOutputPath=${{ runner.temp }}\dist
 
       - name: Test
