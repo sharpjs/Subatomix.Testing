@@ -28,10 +28,15 @@ jobs:
       - name: Check Out Code
         uses: actions/checkout@v2
 
-      - name: Configure .NET Core
+      - name: Configure .NET Core 2.1
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.x
+          dotnet-version: '2.1.x'
+
+      - name: Configure .NET Core 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
 
       - name: Stamp Version
         id: stamp
