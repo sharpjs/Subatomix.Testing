@@ -17,7 +17,8 @@
   -->
 
   <PropertyGroup>
-    <Description>Subatomix Testing Support Library</Description>
+    <Description>Subatomix Testing Utilities</Description>
+    <PackageDescription>Preferred dependencies and utilities for automated testing.</PackageDescription>
     <TargetFrameworks>net48;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 
