@@ -47,9 +47,12 @@ jobs:
           -p:Counter=${{ github.run_number }}
           -p:RepositoryCommit=${{ github.sha }}
 
+      - name: Restore NuGet Packages
+        run: dotnet restore
+
       - name: Build
         run: >
-          dotnet build -c Release
+          dotnet build --no-restore -c Release
           -p:PackageOutputPath=${{ runner.temp }}\dist
 
       - name: Test
