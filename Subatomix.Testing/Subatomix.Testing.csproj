@@ -29,7 +29,7 @@
     <PackageReference Include="FluentAssertions" Version="[5.10.3, 6.0.0)">
       <PrivateAssets>none</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="[16.7.1, 17.0.0)">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="[16.8.3, 17.0.0)">
       <PrivateAssets>none</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Moq" Version="[4.15.2, 5.0.0)">
