@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".root", ".root.targets", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subatomix.Testing", "Subatomix.Testing\Subatomix.Testing.csproj", "{0D912E43-0B5C-4E90-BACB-8C1D382D93A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subatomix.Testing.Tests", "Subatomix.Testing.Tests\Subatomix.Testing.Tests.csproj", "{C7944502-756D-4B49-88D9-91516BBD9C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subatomix.Testing.Tests", "Subatomix.Testing.Tests\Subatomix.Testing.Tests.csproj", "{C7944502-756D-4B49-88D9-91516BBD9C12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
