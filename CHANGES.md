@@ -5,9 +5,11 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.1..HEAD)
 (none)
 -->
+
+## [1.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.0..release/1.1.1)
 
 ## [1.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.0.0..release/1.1.0)
 - Update Moq to [4.16.0](https://github.com/moq/moq4/blob/main/CHANGELOG.md#4160-2021-01-16)
