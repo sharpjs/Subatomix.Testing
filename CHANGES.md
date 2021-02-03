@@ -10,10 +10,11 @@ Most lines should begin with one of these words:
 -->
 
 ## [1.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.0..release/1.1.1)
+- Update NUnit to [3.13.1](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-3131---january-31-2021)
 
 ## [1.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.0.0..release/1.1.0)
 - Update Moq to [4.16.0](https://github.com/moq/moq4/blob/main/CHANGELOG.md#4160-2021-01-16)
-- Update NUnit to [3.13.0](https://docs.nunit.org/articles/nunit/release-notes/framework.html)
+- Update NUnit to [3.13.0](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-313---january-7-2021)
 
 ## [1.0.0](https://github.com/sharpjs/Subatomix.Testing/tree/release/1.0.0)
 Initial release.
