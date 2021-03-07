@@ -6,6 +6,7 @@ Most lines should begin with one of these words:
 
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.1..HEAD)
 - Update Microsoft.NET.Test.Sdk to [16.9.1](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#1691)
+- Update Moq to [4.16.1](https://github.com/moq/moq4/blob/v4.16.1/CHANGELOG.md)
 <!--
 (none)
 -->
@@ -14,7 +15,7 @@ Most lines should begin with one of these words:
 - Update NUnit to [3.13.1](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-3131---january-31-2021)
 
 ## [1.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.0.0..release/1.1.0)
-- Update Moq to [4.16.0](https://github.com/moq/moq4/blob/main/CHANGELOG.md#4160-2021-01-16)
+- Update Moq to [4.16.0](https://github.com/moq/moq4/blob/v4.16.0/CHANGELOG.md))
 - Update NUnit to [3.13.0](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-313---january-7-2021)
 
 ## [1.0.0](https://github.com/sharpjs/Subatomix.Testing/tree/release/1.0.0)
