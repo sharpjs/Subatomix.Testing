@@ -29,7 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="**" Exclude=".git;Subatomix*\**;dist\**;coverage\**;$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder);$(MSBuildThisFile)" />
+    <None Include="**" Exclude="Subatomix*\**;dist\**;coverage\**;$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder);$(MSBuildThisFile)" />
     <None Include=".*\**" Exclude=".git\**;.vs\**" />
   </ItemGroup>
 
