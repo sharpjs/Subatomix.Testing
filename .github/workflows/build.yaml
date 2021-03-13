@@ -131,5 +131,6 @@ jobs:
           body_path: CHANGES.md
           files: |
             ${{ runner.temp }}\dist\*nupkg
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
