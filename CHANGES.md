@@ -10,6 +10,7 @@ Most lines should begin with one of these words:
 -->
 
 ## [1.1.3](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.2..release/1.1.3)
+- Update Microsoft.NET.Test.Sdk to [16.9.4](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#1694)
 
 ## [1.1.2](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.1..release/1.1.2)
 - Update Microsoft.NET.Test.Sdk to [16.9.1](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#1691)
