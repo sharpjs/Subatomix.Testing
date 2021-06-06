@@ -4,7 +4,12 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.3..HEAD)
+<!--
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.4..HEAD)
+No changes.
+-->
+
+## [1.1.4](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.3..release/1.1.4)
 - Update Microsoft.NET.Test.Sdk to [16.10.0](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#16100)
 - Update NUnit to [3.13.2](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-3132---april-27-2021)
 
