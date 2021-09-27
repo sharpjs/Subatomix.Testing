@@ -5,9 +5,12 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.4..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.5..HEAD)
 No changes.
 -->
+
+## [1.1.5](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.4..release/1.1.5)
+- Update Microsoft.NET.Test.Sdk to [16.11.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#16110)
 
 ## [1.1.4](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.3..release/1.1.4)
 - Update Microsoft.NET.Test.Sdk to [16.10.0](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#16100)
