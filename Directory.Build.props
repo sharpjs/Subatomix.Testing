@@ -26,10 +26,10 @@
   <!-- Descriptive properties -->
   <PropertyGroup>
     <Product>Subatomix.Testing</Product>
-    <VersionPrefix>1.1.5</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <Authors>Jeffrey Sharp</Authors>
     <Company>Subatomix Research Inc.</Company>
-    <Copyright>© $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>
+    <Copyright>Copyright $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>
     <PackageLicenseExpression>ISC</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sharpjs/Subatomix.Testing</PackageProjectUrl>
     <PackageTags>Testing Coverage</PackageTags>

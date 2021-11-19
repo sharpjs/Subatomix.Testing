@@ -9,6 +9,10 @@ Most lines should begin with one of these words:
 No changes.
 -->
 
+## [2.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.4..release/1.1.5)
+- Add support for .NET 6.0
+- Remove support for .NET Core 2.1
+
 ## [1.1.5](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.4..release/1.1.5)
 - Update Microsoft.NET.Test.Sdk to [16.11.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#16110)
 
