@@ -5,18 +5,22 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.5..HEAD)
-No changes.
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.0..HEAD)
 -->
 
-## [2.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.4..release/1.1.5)
+## [2.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.5..release/2.0.0)
 - Add support for .NET 6.0
-- Remove support for .NET Core 2.1
+- `BREAKING` Remove support for .NET Core 2.1
+- Update Coverlet to [3.1.1](https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/Changelog.md#release-date-2022-01-30)
+- `BREAKING` Update FluentAssertions to [6.4.0](https://fluentassertions.com/releases/#640)
+  - See [migration details](https://fluentassertions.com/upgradingtov6).
+- Update Microsoft.NET.Test.Sdk to [17.0.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1700)
+- Update NUnit3TestAdapter to [4.2.1](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-421---jan-21-2022)
 
-## [1.1.5](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.4..release/1.1.5)
+## [1.1.5](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.4..release/1.1.5)
 - Update Microsoft.NET.Test.Sdk to [16.11.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#16110)
 
-## [1.1.4](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.3..release/1.1.4)
+## [1.1.4](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.3..release/1.1.4)
 - Update Microsoft.NET.Test.Sdk to [16.10.0](https://github.com/microsoft/vstest-docs/blob/master/docs/releases.md#16100)
 - Update NUnit to [3.13.2](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-3132---april-27-2021)
 
