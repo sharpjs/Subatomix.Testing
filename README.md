@@ -6,11 +6,11 @@
 
 My preferred frameworks for automated testing in .NET.
 
-See [here](https://github.com/sharpjs/Subatomix.Testing/blob/master/Subatomix.Testing/Subatomix.Testing.csproj)
+See [here](https://github.com/sharpjs/Subatomix.Testing/blob/main/Subatomix.Testing/Subatomix.Testing.csproj)
 for a list of included packages and their versions.
 
 This package also includes the
-[`TestHarnessBase`](https://github.com/sharpjs/Subatomix.Testing/blob/master/Subatomix.Testing/TestHarnessBase.cs)
+[`TestHarnessBase`](https://github.com/sharpjs/Subatomix.Testing/blob/main/Subatomix.Testing/TestHarnessBase.cs)
 class, which aids my preferred technique for setup/teardown code.  Generally, I
 eschew traditional `SetUp` and `TearDown` methods.  Instead, in each test, I
 create an instance of a disposable context class.  Construction is setup, and
