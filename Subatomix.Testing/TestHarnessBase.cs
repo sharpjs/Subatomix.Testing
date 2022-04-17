@@ -14,138 +14,133 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
 using Moq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 
-namespace Subatomix.Testing
+namespace Subatomix.Testing;
+
+/// <summary>
+///   A base class for disposable test harnesses using NUnit and Moq.
+/// </summary>
+public abstract class TestHarnessBase : IDisposable
 {
     /// <summary>
-    ///   A base class for disposable test harnesses using NUnit and Moq.
+    ///   Initializes a new <see cref="TestHarnessBase"/> instance.
     /// </summary>
-    public abstract class TestHarnessBase : IDisposable
+    protected TestHarnessBase()
     {
-        /// <summary>
-        ///   Initializes a new <see cref="TestHarnessBase"/> instance.
-        /// </summary>
-        protected TestHarnessBase()
-        {
-            Mocks = new MockRepository(MockBehavior.Strict);
+        Mocks = new MockRepository(MockBehavior.Strict);
 
-            Cancellation = new CancellationTokenSource();
+        Cancellation = new CancellationTokenSource();
+    }
+
+    /// <summary>
+    ///   Gets the NUnit random-value generator.
+    /// </summary>
+    public Randomizer Random => TestContext.CurrentContext.Random;
+
+    /// <summary>
+    ///   Gets the mock repository.  All mocks constructed using this mock
+    ///   repository will be verified when the test harness is disposed.
+    /// </summary>
+    public MockRepository Mocks { get; }
+
+    /// <summary>
+    ///   Gets the cancellation token source.
+    /// </summary>
+    public CancellationTokenSource Cancellation { get; }
+
+    /// <summary>
+    ///   Finalizes the test harness instance.  This causes an unmanaged
+    ///   disposal, in which the test harness disposes only the unmanaged
+    ///   resources it owns, like temporary files.  The test harness does not
+    ///   dispose managed resources (.NET objects) and does not verify mocks.
+    /// </summary>
+    [ExcludeFromCodeCoverage]
+    ~TestHarnessBase()
+    {
+        Dispose(managed: false);
+    }
+    internal void SimulateFinalizer()
+    {
+        Dispose(managed: false);
+    }
+
+    /// <summary>
+    ///   Performs a managed disposal of the test harness instance.  The
+    ///   test harness verifies mocks and disposes all resources it owns.
+    /// </summary>
+    public void Dispose()
+    {
+        Dispose(managed: true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    ///   Disposes the test harness instance.  In a managed disposal, the
+    ///   test harness verifies mocks and disposes any managed resources
+    ///   (.NET objects) it owns.  In both managed and unmanaged disposals,
+    ///   the test harness disposes any unmanaged resources it owns, like
+    ///   temporary files.
+    /// </summary>
+    /// <param name="managed">
+    ///   <c>true</c>  to indicate a    managed disposal, or
+    ///   <c>false</c> to indicate an unmanaged disposal.
+    /// </param>
+    protected void Dispose(bool managed)
+    {
+        if (!managed)
+        {
+            CleanUp(managed: false);
+            return;
         }
 
-        /// <summary>
-        ///   Gets the NUnit random-value generator.
-        /// </summary>
-        public Randomizer Random => TestContext.CurrentContext.Random;
-
-        /// <summary>
-        ///   Gets the mock repository.  All mocks constructed using this
-        ///   mock repository will be verified when the test harness is
-        ///   disposed.
-        /// </summary>
-        public MockRepository Mocks { get; }
-
-        /// <summary>
-        ///   Gets the cancellation token source.
-        /// </summary>
-        public CancellationTokenSource Cancellation { get; }
-
-        /// <summary>
-        ///   Finalizes the test harness instance.  This causes an unmanaged
-        ///   disposal, in which the test harness disposes only the unmanaged
-        ///   resources it owns, like temporary files.  The test harness does
-        ///   not dispose managed resources (.NET objects) and does not verify
-        ///   mocks.
-        /// </summary>
-        [ExcludeFromCodeCoverage]
-        ~TestHarnessBase()
+        try
         {
-            Dispose(managed: false);
+            // An error in verification should cause the test to fail, but
+            // should not prevent resource cleanup.
+            Verify();
         }
-        internal void SimulateFinalizer()
+        finally
         {
-            Dispose(managed: false);
-        }
-
-        /// <summary>
-        ///   Performs a managed disposal of the test harness instance.  The
-        ///   test harness verifies mocks and disposes all resources it owns.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(managed: true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        ///   Disposes the test harness instance.  In a managed disposal, the
-        ///   test harness verifies mocks and disposes any managed resources
-        ///   (.NET objects) it owns.  In both managed and unmanaged disposals,
-        ///   the test harness disposes any unmanaged resources it owns, like
-        ///   temporary files.
-        /// </summary>
-        /// <param name="managed">
-        ///   <c>true</c>  to indicate a    managed disposal, or
-        ///   <c>false</c> to indicate an unmanaged disposal.
-        /// </param>
-        protected void Dispose(bool managed)
-        {
-            if (!managed)
-            {
-                CleanUp(managed: false);
-                return;
-            }
-
+            // Resource cleanup problems should be reported, but should not
+            // mask an actual test error.
             try
             {
-                // An error in verification should cause the test to fail, but
-                // should not prevent resource cleanup.
-                Verify();
+                CleanUp(managed: true);
             }
-            finally
+            catch
             {
-                // Resource cleanup problems should be reported, but should not
-                // mask an actual test error.
-                try
-                {
-                    CleanUp(managed: true);
-                }
-                catch
-                {
-                    var status = TestContext.CurrentContext.Result.Outcome.Status;
-                    if (status == TestStatus.Passed || status == TestStatus.Skipped)
-                        throw;
-                }
+                var status = TestContext.CurrentContext.Result.Outcome.Status;
+                if (status == TestStatus.Passed || status == TestStatus.Skipped)
+                    throw;
             }
         }
+    }
 
-        /// <summary>
-        ///   Verifies mocks created by the test harness.
-        /// </summary>
-        protected virtual void Verify()
-        {
-            Mocks.Verify();
-        }
+    /// <summary>
+    ///   Verifies mocks created by the test harness.
+    /// </summary>
+    protected virtual void Verify()
+    {
+        Mocks.Verify();
+    }
 
-        /// <summary>
-        ///   Cleans up resources after each test.
-        /// </summary>
-        /// <param name="managed">
-        ///   <c>true</c> to clean up both managed and unmanaged resources;
-        ///   <c>false</c> to clean up only unmanaged resources.
-        /// </param>
-        protected virtual void CleanUp(bool managed)
-        {
-            if (!managed)
-                return;
+    /// <summary>
+    ///   Cleans up resources after each test.
+    /// </summary>
+    /// <param name="managed">
+    ///   <c>true</c> to clean up both managed and unmanaged resources;
+    ///   <c>false</c> to clean up only unmanaged resources.
+    /// </param>
+    protected virtual void CleanUp(bool managed)
+    {
+        if (!managed)
+            return;
 
-            Cancellation.Dispose();
-        }
+        Cancellation.Dispose();
     }
 }
