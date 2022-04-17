@@ -43,6 +43,7 @@
   <PropertyGroup>
     <LangVersion>10</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
     <GenerateDocumentationFile Condition="'$(IsPackable)' == 'true'">true</GenerateDocumentationFile>
   </PropertyGroup>
 
