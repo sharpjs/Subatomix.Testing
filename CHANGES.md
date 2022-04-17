@@ -12,9 +12,11 @@ Most lines should begin with one of these words:
 - Add support for .NET 6.0
 - `BREAKING` Remove support for .NET Core 2.1
 - Update Coverlet to [3.1.2](https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/Changelog.md#release-date-2022-02-06)
-- `BREAKING` Update FluentAssertions to [6.4.0](https://fluentassertions.com/releases/#640)
+- `BREAKING` Update FluentAssertions to [6.6.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.6.0)
   - See [migration details](https://fluentassertions.com/upgradingtov6).
-- Update Microsoft.NET.Test.Sdk to [17.0.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1700)
+- Update Microsoft.NET.Test.Sdk to [17.1.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1710)
+- Update Moq to [4.17.2](https://github.com/moq/moq4/blob/v4.17.2/CHANGELOG.md)
+- Update NUnit to [3.13.3](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-3133---march-20-2022)
 - Update NUnit3TestAdapter to [4.2.1](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-421---jan-21-2022)
 
 ## [1.1.5](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.4..release/1.1.5)
