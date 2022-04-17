@@ -29,6 +29,7 @@ on:
       - main
       - release/*
   workflow_dispatch:
+    # no options
 
 env:
   # Minimize noise from dotnet CLI
@@ -38,6 +39,7 @@ jobs:
   build:
     name: Build
     runs-on: windows-2022 # until windows-latest updates to 2022
+    #url: https://github.com/actions/virtual-environments
 
     steps:
       - name: Check Out Code
