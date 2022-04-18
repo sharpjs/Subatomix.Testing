@@ -26,9 +26,4 @@
     <ProjectReference Include="..\Subatomix.Testing\Subatomix.Testing.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="FluentAssertions" />
-    <Using Include="NUnit.Framework" />
-  </ItemGroup>
-
 </Project>

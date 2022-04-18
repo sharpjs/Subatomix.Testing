@@ -39,6 +39,10 @@
       <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
+  <ItemGroup>
+    <Using Include="FluentAssertions" />
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
 
   <!-- Versioning -->
   <ItemGroup>
