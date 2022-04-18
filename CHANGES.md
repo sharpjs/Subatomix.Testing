@@ -9,6 +9,7 @@ Most lines should begin with one of these words:
 -->
 
 ## [2.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.5..release/2.0.0)
+- Add `ExceptionTests`.
 - Add support for .NET 6.0
 - `BREAKING` Remove support for .NET Core 2.1
 - Update Coverlet to [3.1.2](https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/Changelog.md#release-date-2022-02-06)
