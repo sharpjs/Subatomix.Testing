@@ -5,8 +5,11 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.1..HEAD)
 -->
+
+## [2.0.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.0..release/2.0.1)
+- Fix missing IntelliSense.
 
 ## [2.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/1.1.5..release/2.0.0)
 - Add `ExceptionTests`.
