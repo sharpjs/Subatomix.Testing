@@ -38,7 +38,7 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: windows-2022 # until windows-latest updates to 2022
+    runs-on: windows-latest
     #url: https://github.com/actions/virtual-environments
 
     steps:
@@ -69,6 +69,7 @@ jobs:
         run: >
           dotnet build .root.targets -c Release
           -p:StampOnBuild=true
+          -p:SetGitHubActionsVersion=true
           -p:Branch=${{ github.ref }}
           -p:Counter=${{ github.run_number }}
           -p:RepositoryCommit=${{ github.sha }}
@@ -93,7 +94,7 @@ jobs:
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
           targetdir: ${{ runner.temp }}\coverage
-          reporttypes: Cobertura;HtmlInline;Badges;TeamCitySummary
+          reporttypes: Cobertura;JsonSummary;Html_Dark;Badges
           verbosity: Warning
 
       - name: Save Coverage Report
