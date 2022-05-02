@@ -21,13 +21,6 @@ using static System.Reflection.BindingFlags;
 
 namespace Subatomix.Testing;
 
-// Squelch Visual Studio's incorrect hint to remove the next suppression
-#pragma warning disable IDE0079
-
-// Allow obsolete BinaryFormatter to test legacy deserialization constructor
-// https://docs.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0011
-#pragma warning disable SYSLIB0011
-
 /// <summary>
 ///   Base class for tests of exception types.
 /// </summary>
@@ -145,6 +138,13 @@ public abstract class ExceptionTests<T>
         // Thus Activator.CreateInstance is guaranteed to not return null.
         return (T) Activator.CreateInstance(typeof(T), args)!;
     }
+
+    // Squelch Visual Studio's incorrect hint to remove the next suppression
+    #pragma warning disable IDE0079
+
+    // Allow obsolete BinaryFormatter to test legacy deserialization constructor
+    // https://docs.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0011
+    #pragma warning disable SYSLIB0011
 
     private static T Roundtrip(T obj)
     {
