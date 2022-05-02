@@ -17,7 +17,6 @@
 namespace Subatomix.Testing;
 
 [TestFixture]
-[Parallelizable(ParallelScope.All)]
 public static class TestHarnessBaseTests
 {
     [Test]

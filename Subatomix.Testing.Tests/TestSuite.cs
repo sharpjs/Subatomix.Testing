@@ -14,10 +14,5 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
-namespace Subatomix.Testing;
-
-[TestFixture]
-public class ExceptionTestsTests : ExceptionTests<Exception>
-{
-    // Tests defined by base class
-}
+// Run tests in parallel unless marked otherwise
+[assembly: Parallelizable(ParallelScope.Children)]
