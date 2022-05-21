@@ -29,7 +29,7 @@
     <VersionPrefix>2.1.0</VersionPrefix>
     <Authors>Jeffrey Sharp</Authors>
     <Company>Subatomix Research Inc.</Company>
-    <Copyright>Copyright $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>
+    <Copyright>© $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>
     <PackageLicenseExpression>ISC</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sharpjs/Subatomix.Testing</PackageProjectUrl>
     <PackageTags>Testing Coverage</PackageTags>
@@ -42,8 +42,8 @@
   <!-- Build properties -->
   <PropertyGroup>
     <LangVersion>10</LangVersion>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!-- Packaging properties -->
