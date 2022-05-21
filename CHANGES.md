@@ -9,6 +9,9 @@ Most lines should begin with one of these words:
 -->
 
 ## [2.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.1..release/2.1.0)
+- Update FluentAssertions to [6.7.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.7.0)
+- Update Microsoft.NET.Test.Sdk to [17.2.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1720)
+- Update Moq to [4.18.1](https://github.com/moq/moq4/blob/v4.18.1/CHANGELOG.md)
 
 ## [2.0.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.0..release/2.0.1)
 - Fix missing IntelliSense.
