@@ -9,6 +9,8 @@ Most lines should begin with one of these words:
 -->
 
 ## [2.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.0..release/2.1.1)
+- Fix packaging issues:
+  - Enable deterministic build.
 
 ## [2.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.0.1..release/2.1.0)
 - Update FluentAssertions to [6.7.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.7.0)
