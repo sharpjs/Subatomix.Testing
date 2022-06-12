@@ -72,4 +72,7 @@
   </PropertyGroup>
   <Import Project="$(StampFilePath)" Condition="Exists('$(StampFilePath)')"/>
 
+  <!-- Simulate .props import from package -->
+  <Import Project="Subatomix.Testing\Subatomix.Testing.props"/>
+
 </Project>
