@@ -21,6 +21,7 @@
     <PackageDescription>Preferred dependencies and utilities for automated testing.</PackageDescription>
     <TargetFrameworks>net48;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <ContentTargetFolders>build</ContentTargetFolders>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,5 +43,10 @@
   <PropertyGroup>
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None     Remove="Subatomix.Testing.props" />
+    <Content Include="Subatomix.Testing.props" />
+  </ItemGroup>
 
 </Project>

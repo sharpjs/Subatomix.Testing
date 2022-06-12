@@ -9,6 +9,12 @@ Most lines should begin with one of these words:
 -->
 
 ## [2.2.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.0..release/2.2.0)
+- Add implicit `using` statements for testing-related namespaces:
+  - `FluentAssertions`
+  - `FluentAssertions.FluentActions` (static)
+  - `Moq`
+  - `NUnit.Framework`
+  - `Subatomix.Testing`
 - Fix packaging issues:
   - Enable deterministic build.
   - Embed untracked sources in symbols package.
