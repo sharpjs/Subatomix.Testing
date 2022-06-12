@@ -16,6 +16,11 @@
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
   -->
 
+  <!--
+    Imported early: Directory.Build.props -> this -> SDK .props -> project
+    https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
+  -->
+
   <ItemGroup>
     <Using Include="FluentAssertions" />
     <Using Include="FluentAssertions.FluentActions" Static="true" />
