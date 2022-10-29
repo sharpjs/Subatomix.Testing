@@ -12,6 +12,7 @@ Most lines should begin with one of these words:
 - Update Coverlet to [3.2.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v5.8.0)
 - Update FluentAssertions to [6.8.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.8.0)
 - Update Microsoft.NET.Test.Sdk to [17.3.2](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1732)
+- Update Moq to [4.18.2](https://github.com/moq/moq4/blob/v4.18.2/CHANGELOG.md)
 - Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022)
 
 ## [2.2.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.0..release/2.2.0)
