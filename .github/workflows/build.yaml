@@ -16,11 +16,13 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 name: Build
+run-name: Build
 
 on:
   push:
     branches:
       - main
+      - next
       - release/*
     tags:
       - release/*
@@ -43,26 +45,17 @@ jobs:
 
     steps:
       - name: Check Out Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         #url: https://github.com/actions/checkout
 
-      - name: Configure .NET Core 3.1
-        uses: actions/setup-dotnet@v1
+      - name: Configure .NET
+        uses: actions/setup-dotnet@v3
         #url: https://github.com/actions/setup-dotnet
         with:
-          dotnet-version: 3.1.x
-
-      - name: Configure .NET 5.0
-        uses: actions/setup-dotnet@v1
-        #url: https://github.com/actions/setup-dotnet
-        with:
-          dotnet-version: 5.0.x
-
-      - name: Configure .NET 6.0
-        uses: actions/setup-dotnet@v1
-        #url: https://github.com/actions/setup-dotnet
-        with:
-          dotnet-version: 6.0.x
+          dotnet-version: |
+            3.1.x
+            5.0.x
+            6.0.x
 
       - name: Stamp Version
         id: stamp
@@ -90,7 +83,7 @@ jobs:
           --results-directory:${{ runner.temp }}\coverage\raw
 
       - name: Prepare Coverage Report
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.9
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.10
         #url: https://github.com/danielpalme/ReportGenerator-GitHub-Action
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
@@ -99,7 +92,7 @@ jobs:
           verbosity: Warning
 
       - name: Save Coverage Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         #url: https://github.com/actions/upload-artifact
         with:
           name: Coverage Report
@@ -107,7 +100,7 @@ jobs:
           if-no-files-found: error
 
       - name: Save Package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         #url: https://github.com/actions/upload-artifact
         with:
           name: Packages
