@@ -5,8 +5,11 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.2.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..HEAD)
 -->
+
+## [2.3.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.2.0..release/2.3.0)
+- Update Coverlet to [3.2.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v5.8.0)
 
 ## [2.2.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.1.0..release/2.2.0)
 - Add implicit `using` statements for testing-related namespaces:
