@@ -15,6 +15,8 @@ Most lines should begin with one of these words:
 ## [2.4.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..release/2.4.0)
 -->
 
+- Update Microsoft.NET.Test.Sdk to [17.4.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1740).
+
 ## [2.3.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.2.0..release/2.3.0)
 - Update Coverlet to [3.2.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v5.8.0)
 - Update FluentAssertions to [6.8.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.8.0)
