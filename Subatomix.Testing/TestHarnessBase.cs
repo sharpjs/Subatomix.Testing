@@ -121,7 +121,7 @@ public abstract class TestHarnessBase : IDisposable
     /// <summary>
     ///   Verifies mocks created by the test harness.
     /// </summary>
-    protected virtual void Verify()
+    protected internal virtual void Verify()
     {
         Mocks.Verify();
     }
@@ -133,7 +133,7 @@ public abstract class TestHarnessBase : IDisposable
     ///   <c>true</c> to clean up both managed and unmanaged resources;
     ///   <c>false</c> to clean up only unmanaged resources.
     /// </param>
-    protected virtual void CleanUp(bool managed)
+    protected internal virtual void CleanUp(bool managed)
     {
         if (!managed)
             return;
