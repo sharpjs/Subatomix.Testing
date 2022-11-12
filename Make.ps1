@@ -150,9 +150,9 @@ function Export-CoverageReport {
         "    Branches: {0,7:F3}%" -f $Summary.branchcoverage
         ""
     ) | Write-Host
-    #if ($Summary.methodcoverage + $Summary.linecoverage + $Summary.branchcoverage -lt 300) {
-    #    Write-Warning "Coverage is below 100%."
-    #}
+    if ($Summary.methodcoverage + $Summary.linecoverage + $Summary.branchcoverage -lt 300) {
+        Write-Warning "Coverage is below 100%."
+    }
 }
 
 function Invoke-DotNet {
