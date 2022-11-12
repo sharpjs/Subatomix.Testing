@@ -28,7 +28,6 @@
       Subatomix*\**;
       coverage\**;
       dist\**;
-      InternalTrace.*.log;
       $(DefaultItemExcludesInProjectFolder)
     </DefaultItemExcludesInProjectFolder>
   </PropertyGroup>
