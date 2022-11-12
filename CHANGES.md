@@ -6,8 +6,6 @@ Most lines should begin with one of these words:
 
 <!--
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..HEAD)
-- Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022).
-  <br/>Reverted due to https://github.com/nunit/nunit-console/issues/1178
 -->
 
 
@@ -16,6 +14,9 @@ Most lines should begin with one of these words:
 -->
 
 - Update Microsoft.NET.Test.Sdk to [17.4.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1740).
+- Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022).
+
+Known issue: https://github.com/nunit/nunit-console/issues/1178
 
 ## [2.3.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.2.0..release/2.3.0)
 - Update Coverlet to [3.2.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v5.8.0)
