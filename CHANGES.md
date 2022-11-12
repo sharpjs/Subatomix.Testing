@@ -16,6 +16,7 @@ Most lines should begin with one of these words:
 - Add .NET 7.0 support.
 - Update Microsoft.NET.Test.Sdk to [17.4.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1740).
 - Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022).
+- Fix: exception from `TestHarnessBase.CleanUp()` was always ignored.
 
 Known issue: https://github.com/nunit/nunit-console/issues/1178
 

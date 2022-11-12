@@ -92,31 +92,28 @@ public abstract class TestHarnessBase : IDisposable
     /// </param>
     protected void Dispose(bool managed)
     {
-        if (!managed)
-        {
-            CleanUp(managed: false);
-            return;
-        }
+        bool throwing = false;
 
         try
         {
-            // An error in verification should cause the test to fail, but
-            // should not prevent resource cleanup.
-            Verify();
+            if (managed) Verify();
+        }
+        catch
+        {
+            throwing = true;
+            throw;
         }
         finally
         {
-            // Resource cleanup problems should be reported, but should not
-            // mask an actual test error.
             try
             {
-                CleanUp(managed: true);
+                // Verification exception should not prevent resource cleanup
+                CleanUp(managed);
             }
-            catch
+            catch (Exception e) when (throwing)
             {
-                var status = TestContext.CurrentContext.Result.Outcome.Status;
-                if (status == TestStatus.Passed || status == TestStatus.Skipped)
-                    throw;
+                // Cleanup exception should not mask verification failure
+                Assert.Warn("Exception thrown during test harness cleanup: {0}", e);
             }
         }
     }
