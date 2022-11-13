@@ -5,14 +5,10 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..HEAD)
 -->
 
-
-<!--
 ## [2.4.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..release/2.4.0)
--->
-
 - Add .NET 7.0 support.
 - Update Microsoft.NET.Test.Sdk to [17.4.0](https://github.com/microsoft/vstest-docs/blob/main/docs/releases.md#1740).
 - Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022).
