@@ -34,10 +34,20 @@ public abstract class TestHarnessBase : IDisposable
         Cancellation = new CancellationTokenSource();
     }
 
+#if NET5_0_OR_GREATER
+    // Squelch warning that Random could be made static: avoiding breaking change
+    // TODO: Deprecate NUnit Randomizer in favor of Bogus library
+    #pragma warning disable CA1822
+#endif
+
     /// <summary>
     ///   Gets the NUnit random-value generator.
     /// </summary>
     public Randomizer Random => TestContext.CurrentContext.Random;
+
+#if NET5_0_OR_GREATER
+    #pragma warning restore CA1822
+#endif
 
     /// <summary>
     ///   Gets the mock repository.  All mocks constructed using this mock

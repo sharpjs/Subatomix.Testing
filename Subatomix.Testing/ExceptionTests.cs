@@ -34,8 +34,10 @@ public abstract class ExceptionTests<T>
     // https://www.bell-labs.com/usr/dmr/www/odd.html
     private const string ArcaneMessage = "values of β will give rise to dom!";
 
+#if !NETCOREAPP3_1
     // Squelch warnings about missing XML comments: tests will not have XML comments
     #pragma warning disable CS1591
+#endif
 
     [Test]
     public virtual void Construct_Default()
