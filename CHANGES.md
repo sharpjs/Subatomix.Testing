@@ -4,9 +4,9 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-<!--
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..HEAD)
--->
+- Update NUnit3TestAdapter to [4.3.1](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-431---nov-19-2022),
+  which fixes [nunit-console #1178](https://github.com/nunit/nunit-console/issues/1178).
 
 ## [2.4.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.3.0..release/2.4.0)
 - Add .NET 7.0 support.
@@ -14,7 +14,7 @@ Most lines should begin with one of these words:
 - Update NUnit3TestAdapter to [4.3.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-430---oct-29-2022).
 - Fix: exception from `TestHarnessBase.CleanUp()` was always ignored.
 
-Known issue: https://github.com/nunit/nunit-console/issues/1178
+Known issue: [nunit-console #1178](https://github.com/nunit/nunit-console/issues/1178)
 
 ## [2.3.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.2.0..release/2.3.0)
 - Update Coverlet to [3.2.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v5.8.0)
