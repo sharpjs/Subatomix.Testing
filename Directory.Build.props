@@ -46,10 +46,6 @@
     <Nullable>enable</Nullable>
     <InheritDocEnabled>true</InheritDocEnabled>
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
-    <DefaultItemExcludesInProjectFolder>
-      InternalTrace.*.log;<!-- workaround for https://github.com/nunit/nunit-console/issues/1178 -->
-      $(DefaultItemExcludesInProjectFolder)
-    </DefaultItemExcludesInProjectFolder>
   </PropertyGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
