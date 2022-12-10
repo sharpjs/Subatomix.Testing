@@ -4,7 +4,11 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..HEAD)
+<!--
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.1..HEAD)
+-->
+
+## [2.4.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..release/2.4.1)
 - Update Moq to [4.18.3](https://github.com/moq/moq4/blob/v4.18.3/CHANGELOG.md)
 - Update NUnit3TestAdapter to [4.3.1](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio---version-431---nov-19-2022),
   which fixes [nunit-console #1178](https://github.com/nunit/nunit-console/issues/1178).
