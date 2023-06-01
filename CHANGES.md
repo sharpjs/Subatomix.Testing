@@ -9,6 +9,7 @@ Most lines should begin with one of these words:
 -->
 
 ## [2.5.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.1..release/2.5.0)
+- Update FluentAssertions to [6.11.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.11.0)
 - Update Microsoft.NET.Test.Sdk to [17.6.0](https://github.com/microsoft/vstest/blob/main/docs/releases.md#1760).
 
 ## [2.4.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..release/2.4.1)
