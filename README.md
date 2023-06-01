@@ -1,6 +1,7 @@
 # Subatomix.Testing
 
 [![Build](https://github.com/sharpjs/Subatomix.Testing/workflows/Build/badge.svg)](https://github.com/sharpjs/Subatomix.Testing/actions)
+[![Build](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/sharpjs/Mixer/actions)
 [![NuGet](https://img.shields.io/nuget/v/Subatomix.Testing.svg)](https://www.nuget.org/packages/Subatomix.Testing)
 [![NuGet](https://img.shields.io/nuget/dt/Subatomix.Testing.svg)](https://www.nuget.org/packages/Subatomix.Testing)
 
