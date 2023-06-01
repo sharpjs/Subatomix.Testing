@@ -12,6 +12,7 @@ Most lines should begin with one of these words:
 - Update FluentAssertions to [6.11.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.11.0)
 - Update Microsoft.NET.Test.Sdk to [17.6.0](https://github.com/microsoft/vstest/blob/main/docs/releases.md#1760).
 - Update Moq to [4.18.4](https://github.com/moq/moq4/blob/v4.18.4/CHANGELOG.md)
+- Update NUnit3TestAdapter to [4.5.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio-and-dotnet---version-450---may-30-2023).
 
 ## [2.4.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..release/2.4.1)
 - Update Moq to [4.18.3](https://github.com/moq/moq4/blob/v4.18.3/CHANGELOG.md)
