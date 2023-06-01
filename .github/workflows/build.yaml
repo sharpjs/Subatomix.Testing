@@ -1,7 +1,7 @@
 # GitHub Actions workflow
 # https://help.github.com/en/actions/reference
 #
-# Copyright 2022 Jeffrey Sharp
+# Copyright 2023 Jeffrey Sharp
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -32,6 +32,9 @@ on:
       - release/*
   workflow_dispatch:
     # no options
+
+permissions:
+  contents: write # required by ncipollo/release-action@v1
 
 env:
   # Minimize noise from dotnet CLI
@@ -84,13 +87,19 @@ jobs:
           --results-directory:${{ runner.temp }}\coverage\raw
 
       - name: Prepare Coverage Report
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.12
+        uses: danielpalme/ReportGenerator-GitHub-Action@5
         #url: https://github.com/danielpalme/ReportGenerator-GitHub-Action
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
           targetdir: ${{ runner.temp }}\coverage
-          reporttypes: Cobertura;JsonSummary;Html_Dark;Badges
+          reporttypes: Html;MarkdownSummaryGithub;Badges
           verbosity: Warning
+
+      - name: Publish Coverage Summary
+        run: >
+          Get-Content $env:REPORT_PATH -Raw >> $env:GITHUB_STEP_SUMMARY 
+        env:
+          REPORT_PATH: ${{ runner.temp }}\coverage\SummaryGithub.md
 
       - name: Save Coverage Report
         uses: actions/upload-artifact@v3
