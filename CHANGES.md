@@ -5,8 +5,10 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.1..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.0..HEAD)
 -->
+
+## [2.5.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.1..release/2.5.0)
 
 ## [2.4.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.0..release/2.4.1)
 - Update Moq to [4.18.3](https://github.com/moq/moq4/blob/v4.18.3/CHANGELOG.md)
@@ -83,7 +85,7 @@ Known issue: [nunit-console #1178](https://github.com/nunit/nunit-console/issues
 Initial release.
 
 <!--
-  Copyright 2022 Jeffrey Sharp
+  Copyright 2023 Jeffrey Sharp
 
   Permission to use, copy, modify, and distribute this software for any
   purpose with or without fee is hereby granted, provided that the above
