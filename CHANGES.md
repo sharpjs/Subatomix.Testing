@@ -8,6 +8,8 @@ Most lines should begin with one of these words:
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.0..HEAD)
 -->
 
+## [2.5.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.0..release/2.5.1)
+
 ## [2.5.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.4.1..release/2.5.0)
 - Update Coverlet to [6.0.0](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.0)
 - Update FluentAssertions to [6.11.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.11.0)
