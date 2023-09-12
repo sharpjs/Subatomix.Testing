@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector"     Version="[ 6.0.0,   7.0.0)" PrivateAssets="none" />
-    <PackageReference Include="FluentAssertions"       Version="[ 6.11.0,  7.0.0)" PrivateAssets="none" />
+    <PackageReference Include="FluentAssertions"       Version="[ 6.12.0,  7.0.0)" PrivateAssets="none" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="[17.7.2,  18.0.0)" PrivateAssets="none" />
     <PackageReference Include="Moq"                    Version="[ 4.20.69, 5.0.0)" PrivateAssets="none" />
     <PackageReference Include="NUnit"                  Version="[ 3.13.3,  4.0.0)" PrivateAssets="none" />
