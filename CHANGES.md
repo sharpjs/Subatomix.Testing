@@ -4,9 +4,8 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-<!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.0..HEAD)
--->
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..HEAD)
+- Update Moq to [4.20.69](https://github.com/moq/moq/releases/tag/v4.20.69)
 
 ## [2.5.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.0..release/2.5.1)
 - Update Microsoft.NET.Test.Sdk to [17.6.3](https://github.com/microsoft/vstest/releases/tag/v17.6.3).
