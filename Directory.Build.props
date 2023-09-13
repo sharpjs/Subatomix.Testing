@@ -15,7 +15,7 @@
   <!-- Descriptive properties -->
   <PropertyGroup>
     <Product>Subatomix.Testing</Product>
-    <VersionPrefix>2.5.1</VersionPrefix>
+    <VersionPrefix>2.6.0</VersionPrefix>
     <Authors>Subatomix Research Inc.</Authors>
     <Company>Subatomix Research Inc.</Company>
     <Copyright>© $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>

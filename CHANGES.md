@@ -4,7 +4,11 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..HEAD)
+<!--
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..HEAD)
+-->
+
+## [2.6.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..release/2.6.0)
 - Update FluentAssertions to [6.12.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.12.0)
 - Update Moq to [4.20.69](https://github.com/moq/moq/releases/tag/v4.20.69)
 - Update Microsoft.NET.Test.Sdk to [17.7.2](https://github.com/microsoft/vstest/releases/tag/v17.7.2).
