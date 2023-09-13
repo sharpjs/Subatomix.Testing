@@ -1,4 +1,4 @@
-# Subatomix.Testing
+## About
 
 [![Build](https://github.com/sharpjs/Subatomix.Testing/workflows/Build/badge.svg)](https://github.com/sharpjs/Subatomix.Testing/actions)
 [![Build](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/sharpjs/Mixer/actions)
@@ -48,8 +48,44 @@ This pattern enables some cool things:
 - I can enable the C# 8
   [nullability checker](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
   and not have to sprinkle `?` and `!` all over the test code.
-- Tests can run in parallel, since there is no longer any shared state within a test class.
+
+- Tests can run in parallel, regardless of test fixture lifetime, since there
+  is no longer any shared state within a test class.
+
 - Test-support code can be isolated away from the tests themselves.
+
+If the
+[test fixture lifetime](https://docs.nunit.org/articles/nunit/writing-tests/attributes/fixturelifecycle.html)
+is instance-per-test-case, the test fixture itself can be a subclass of
+`TestHarnessBase`.  This results in a test fixture more closely resembling a
+traditional one and removes the need for a `using` statement in each test,
+while retaining the improved nullability ergonomics.  However, directly
+subclassing `TestHarnessBase` forfeits the isolation afforded by having a
+separate test harness class.
+
+```csharp
+[TestFixture]
+public class SomeTests : TestHarnessBase
+{
+    // properties for mocks and things
+
+    public TestHarness()
+    {
+        // setup code
+    }
+
+    protected override CleanUp()
+    {
+        // teardown code
+    }
+
+    [Test]
+    public void TestSomething()
+    {
+        // test
+    }
+}
+```
 
 <!--
   Copyright 2023 Subatomix Research Inc.
