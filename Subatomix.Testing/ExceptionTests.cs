@@ -1,10 +1,12 @@
 // Copyright 2023 Subatomix Research Inc.
 // SPDX-License-Identifier: ISC
 
+#if !NET8_0_OR_GREATER
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 using static System.Reflection.BindingFlags;
+#endif
 
 namespace Subatomix.Testing;
 
@@ -82,6 +84,7 @@ public abstract class ExceptionTests<T>
         exception.InnerException.Should().BeNull();
     }
 
+#if !NET8_0_OR_GREATER
     [Test]
     public void SerializableAttribute()
     {
@@ -124,13 +127,6 @@ public abstract class ExceptionTests<T>
         deserialized.InnerException.Should().BeOfType<InvalidProgramException>();
     }
 
-    private static T Create(params object?[] args)
-    {
-        // T is Exception or some type derived from it, not Nullable<_>.
-        // Thus Activator.CreateInstance is guaranteed to not return null.
-        return (T) Activator.CreateInstance(typeof(T), args)!;
-    }
-
     // Squelch Visual Studio's incorrect hint to remove the next suppression
     #pragma warning disable IDE0079
 
@@ -151,5 +147,13 @@ public abstract class ExceptionTests<T>
 
         // Deserialize
         return (T) formatter.Deserialize(memory);
+    }
+#endif
+
+    private static T Create(params object?[] args)
+    {
+        // T is Exception or some type derived from it, not Nullable<_>.
+        // Thus Activator.CreateInstance is guaranteed to not return null.
+        return (T) Activator.CreateInstance(typeof(T), args)!;
     }
 }
