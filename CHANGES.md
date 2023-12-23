@@ -15,6 +15,8 @@ Most lines should begin with one of these words:
   - .NET 8.0
 - Update Microsoft.NET.Test.Sdk to [17.8.0](https://github.com/microsoft/vstest/releases/tag/v17.8.0).
 - Update Moq to [4.20.70](https://github.com/moq/moq/releases/tag/v4.20.70)
+- Update NUnit to [4.0.1](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-401---december-2-2023)
+  See [NUnit 4 Migration Guidance](https://docs.nunit.org/articles/nunit/release-notes/Nunit4.0-MigrationGuide.html).
 
 ## [2.6.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..release/2.6.0)
 - Update FluentAssertions to [6.12.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.12.0)

@@ -107,7 +107,7 @@ public abstract class TestHarnessBase : IDisposable
             catch (Exception e) when (throwing)
             {
                 // Cleanup exception should not mask verification failure
-                Assert.Warn("Exception thrown during test harness cleanup: {0}", e);
+                Assert.Warn($"Exception thrown during test harness cleanup: {e}");
             }
         }
     }
