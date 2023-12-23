@@ -9,6 +9,10 @@ Most lines should begin with one of these words:
 -->
 
 ## [3.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..release/3.0.0)
+- **BREAKING:** Change target frameworks to:
+  - .NET Framework 4.8.1
+  - .NET 6.0
+  - .NET 8.0
 
 ## [2.6.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..release/2.6.0)
 - Update FluentAssertions to [6.12.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.12.0)
