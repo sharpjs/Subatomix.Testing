@@ -5,8 +5,10 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..HEAD)
 -->
+
+## [3.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..release/3.0.0)
 
 ## [2.6.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.5.1..release/2.6.0)
 - Update FluentAssertions to [6.12.0](https://github.com/fluentassertions/fluentassertions/releases/tag/6.12.0)
