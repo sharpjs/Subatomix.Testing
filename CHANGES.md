@@ -11,6 +11,7 @@ Most lines should begin with one of these words:
 ## [3.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..release/3.1.0)
 - Update Coverlet to [6.0.1](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.1)
 - Update Microsoft.NET.Test.Sdk to [17.9.0](https://github.com/microsoft/vstest/releases/tag/v17.9.0).
+- Update NUnit to [4.1.0](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-41---february-23-2024)
 
 ## [3.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..release/3.0.0)
 - **BREAKING:** Change target frameworks to:
