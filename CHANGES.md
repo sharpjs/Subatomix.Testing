@@ -5,8 +5,10 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..HEAD)
 -->
+
+## [3.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..release/3.1.0)
 
 ## [3.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..release/3.0.0)
 - **BREAKING:** Change target frameworks to:
