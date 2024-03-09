@@ -9,6 +9,7 @@ Most lines should begin with one of these words:
 -->
 
 ## [3.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..release/3.1.0)
+- Update Coverlet to [6.0.1](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.1)
 
 ## [3.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/2.6.0..release/3.0.0)
 - **BREAKING:** Change target frameworks to:
