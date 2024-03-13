@@ -5,8 +5,10 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..HEAD)
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.1..HEAD)
 -->
+
+## [3.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..release/3.1.1)
 
 ## [3.1.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.0.0..release/3.1.0)
 - Update Coverlet to [6.0.1](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.1)
