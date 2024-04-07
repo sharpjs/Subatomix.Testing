@@ -65,6 +65,7 @@ separate test harness class.
 
 ```csharp
 [TestFixture]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class SomeTests : TestHarnessBase
 {
     // properties for mocks and things
