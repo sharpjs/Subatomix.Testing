@@ -12,6 +12,7 @@ Most lines should begin with one of these words:
 - Update FluentAssertions to [7.2.0](https://github.com/fluentassertions/fluentassertions/releases/tag/7.2.0)\
   **NOTE:** This package will not upgrade FluentAssertions to 8.x due to license incompatibility.
 - Update Microsoft.NET.Test.Sdk to [17.13.0](https://github.com/microsoft/vstest/releases/tag/v17.13.0).
+- Update Moq to [4.20.72](https://github.com/moq/moq/releases/tag/v4.20.72)
 
 ## [3.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..release/3.1.1)
 - Update Coverlet to [6.0.2](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.2)
