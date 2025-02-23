@@ -8,6 +8,7 @@ Most lines should begin with one of these words:
 -->
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.1..HEAD)
 - Add Shoudly as an alternative to FluentAssertions.
+- Update Coverlet to [6.0.4](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.4)
 
 ## [3.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..release/3.1.1)
 - Update Coverlet to [6.0.2](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.2)
