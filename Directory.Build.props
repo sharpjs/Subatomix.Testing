@@ -18,7 +18,7 @@
     <VersionPrefix>3.2.0</VersionPrefix>
     <Authors>Subatomix Research Inc.</Authors>
     <Company>Subatomix Research Inc.</Company>
-    <Copyright>© $([System.DateTime]::UtcNow.Year) $(Authors)</Copyright>
+    <Copyright>© $([System.DateTime]::UtcNow.Year) $(Company)</Copyright>
     <PackageLicenseExpression>ISC</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sharpjs/Subatomix.Testing</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
