@@ -20,6 +20,7 @@
     <PackageReference Include="Moq"                    PrivateAssets="none" />
     <PackageReference Include="NUnit"                  PrivateAssets="none" />
     <PackageReference Include="NUnit3TestAdapter"      PrivateAssets="none" />
+    <PackageReference Include="Shouldly"               PrivateAssets="none" />
   </ItemGroup>
 
   <!--
