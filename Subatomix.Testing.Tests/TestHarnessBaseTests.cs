@@ -11,14 +11,12 @@ public static class TestHarnessBaseTests
     {
         using var h = new TestHarness();
 
-        h.Mocks         .Should().NotBeNull();
-        h.Mocks.CallBase.Should().BeFalse();
+        h.Mocks         .ShouldNotBeNull();
+        h.Mocks.CallBase.ShouldBeFalse();
 
         // Verify mock repository uses strict behavior
-        h.Mocks.Create<IDisposable>().Object
-            .Invoking(x => x.Dispose())
-            .Should().Throw<MockException>()
-            .WithMessage("* invocation failed with mock behavior Strict.*");
+        Should.Throw<MockException>(h.Mocks.Create<IDisposable>().Object.Dispose)
+            .Message.ShouldContain(" invocation failed with mock behavior Strict.");
     }
 
     [Test]
@@ -26,8 +24,8 @@ public static class TestHarnessBaseTests
     {
         using var h = new TestHarness();
 
-        h.Random.Should().NotBeNull();
-        h.Random.Should().BeSameAs(TestContext.CurrentContext.Random);
+        h.Random.ShouldNotBeNull();
+        h.Random.ShouldBeSameAs(TestContext.CurrentContext.Random);
     }
 
     [Test]
@@ -35,9 +33,9 @@ public static class TestHarnessBaseTests
     {
         using var h = new TestHarness();
 
-        h.Cancellation                        .Should().NotBeNull();
-        h.Cancellation.IsCancellationRequested.Should().BeFalse();
-        h.Cancellation.Token.CanBeCanceled    .Should().BeTrue();
+        h.Cancellation                        .ShouldNotBeNull();
+        h.Cancellation.IsCancellationRequested.ShouldBeFalse();
+        h.Cancellation.Token.CanBeCanceled    .ShouldBeTrue();
     }
 
     [Test]
@@ -67,8 +65,8 @@ public static class TestHarnessBaseTests
         mock.Setup(h => h.CleanUp(true))
             .CallBase().Verifiable();
 
-        mock.Object.Invoking(h => h.Dispose())
-            .Should().Throw<ApplicationException>().WithMessage("Boom!");
+        Should.Throw<ApplicationException>(mock.Object.Dispose)
+            .Message.ShouldBe("Boom!");
 
         mock.VerifyAll();
     }
@@ -84,8 +82,8 @@ public static class TestHarnessBaseTests
         mock.Setup(h => h.CleanUp(true))
             .Throws(() => new ApplicationException("Pow!"));
 
-        mock.Object.Invoking(h => h.Dispose())
-            .Should().Throw<ApplicationException>().WithMessage("Pow!");
+        Should.Throw<ApplicationException>(mock.Object.Dispose)
+            .Message.ShouldBe("Pow!");
 
         mock.VerifyAll();
     }
@@ -101,8 +99,8 @@ public static class TestHarnessBaseTests
         mock.Setup(h => h.CleanUp(true))
             .Throws(() => new ApplicationException("Pow!"));
 
-        mock.Object.Invoking(h => h.Dispose())
-            .Should().Throw<ApplicationException>().WithMessage("Boom!");
+        Should.Throw<ApplicationException>(mock.Object.Dispose)
+            .Message.ShouldBe("Boom!");
 
         mock.VerifyAll();
 
@@ -132,9 +130,8 @@ public static class TestHarnessBaseTests
 
         obj.Setup(o => o.Dispose()).Verifiable();
 
-        h.Invoking(h => h.Verify())
-            .Should().ThrowExactly<MockException>()
-            .WithMessage("* failed verification *");
+        Should.Throw<MockException>(h.Verify)
+            .Message.ShouldContain(" failed verification ");
 
         // To prevent same exception during harness dipsosal
         obj.Reset();
@@ -147,8 +144,7 @@ public static class TestHarnessBaseTests
 
         h.CleanUp(managed: true);
 
-        h.Cancellation.Invoking(c => c.Token)
-            .Should().Throw<ObjectDisposedException>();
+        Should.Throw<ObjectDisposedException>(() => _ = h.Cancellation.Token);
     }
 
     [Test]
@@ -158,8 +154,7 @@ public static class TestHarnessBaseTests
 
         h.CleanUp(managed: false);
 
-        h.Cancellation.Invoking(c => c.Token)
-            .Should().NotThrow();
+        Should.NotThrow(() => _ = h.Cancellation.Token);
     }
 
     internal class TestHarness : TestHarnessBase { }

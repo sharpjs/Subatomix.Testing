@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Subatomix.Testing\Subatomix.Testing.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Use Shouldly going forward -->
+    <Using Remove="FluentAssertions" />
+  </ItemGroup>
+
 </Project>

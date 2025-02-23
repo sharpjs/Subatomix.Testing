@@ -33,8 +33,8 @@ public abstract class ExceptionTests<T>
     {
         var exception = Create();
 
-        exception.Message       .Should().NotBeNullOrWhiteSpace();
-        exception.InnerException.Should().BeNull();
+        exception.Message       .ShouldNotBeNullOrWhiteSpace();
+        exception.InnerException.ShouldBeNull();
     }
 
     [Test]
@@ -42,8 +42,8 @@ public abstract class ExceptionTests<T>
     {
         var exception = Create(ArcaneMessage);
 
-        exception.Message       .Should().BeSameAs(ArcaneMessage);
-        exception.InnerException.Should().BeNull();
+        exception.Message       .ShouldBeSameAs(ArcaneMessage);
+        exception.InnerException.ShouldBeNull();
     }
 
     [Test]
@@ -51,8 +51,8 @@ public abstract class ExceptionTests<T>
     {
         var exception = Create(null as string);
 
-        exception.Message       .Should().NotBeNullOrWhiteSpace();
-        exception.InnerException.Should().BeNull();
+        exception.Message       .ShouldNotBeNullOrWhiteSpace();
+        exception.InnerException.ShouldBeNull();
     }
 
     [Test]
@@ -61,8 +61,8 @@ public abstract class ExceptionTests<T>
         var innerException = new InvalidProgramException();
         var exception      = Create(ArcaneMessage, innerException);
 
-        exception.Message       .Should().BeSameAs(ArcaneMessage);
-        exception.InnerException.Should().BeSameAs(innerException);
+        exception.Message       .ShouldBeSameAs(ArcaneMessage);
+        exception.InnerException.ShouldBeSameAs(innerException);
     }
 
     [Test]
@@ -71,8 +71,8 @@ public abstract class ExceptionTests<T>
         var innerException = new InvalidProgramException();
         var exception      = Create(null as string, innerException);
 
-        exception.Message       .Should().NotBeNullOrWhiteSpace();
-        exception.InnerException.Should().BeSameAs(innerException);
+        exception.Message       .ShouldNotBeNullOrWhiteSpace();
+        exception.InnerException.ShouldBeSameAs(innerException);
     }
 
     [Test]
@@ -80,15 +80,15 @@ public abstract class ExceptionTests<T>
     {
         var exception = Create(ArcaneMessage, null as Exception);
 
-        exception.Message       .Should().BeSameAs(ArcaneMessage);
-        exception.InnerException.Should().BeNull();
+        exception.Message       .ShouldBeSameAs(ArcaneMessage);
+        exception.InnerException.ShouldBeNull();
     }
 
 #if !NET8_0_OR_GREATER
     [Test]
     public void SerializableAttribute()
     {
-        typeof(T).IsSerializable.Should().BeTrue();
+        typeof(T).IsSerializable.ShouldBeTrue();
     }
 
     [Test]
@@ -101,17 +101,17 @@ public abstract class ExceptionTests<T>
             null
         );
 
-        constructor.Should().NotBeNull(
+        constructor.ShouldNotBeNull(string.Format(
             "exception type {0} must provide a deserialization constructor; " +
             "see notes in the test for further information",
             typeof(T).FullName
-        );
+        ));
 
-        constructor!.IsFamily.Should().BeTrue(
+        constructor!.IsFamily.ShouldBeTrue(string.Format(
             "exception type {0} deserialization constructor must be protected; " +
             "see notes in the test for further information",
             typeof(T).FullName
-        );
+        ));
     }
 
     [Test]
@@ -122,9 +122,9 @@ public abstract class ExceptionTests<T>
 
         var deserialized   = Roundtrip(exception);
 
-        deserialized               .Should().NotBeNull();
-        deserialized.Message       .Should().Be(ArcaneMessage);
-        deserialized.InnerException.Should().BeOfType<InvalidProgramException>();
+        deserialized               .ShouldNotBeNull();
+        deserialized.Message       .ShouldBe(ArcaneMessage);
+        deserialized.InnerException.ShouldBeOfType<InvalidProgramException>();
     }
 
     // Squelch Visual Studio's incorrect hint to remove the next suppression

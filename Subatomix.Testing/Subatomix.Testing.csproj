@@ -39,4 +39,9 @@
     <Content Include="Subatomix.Testing.props" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Use Shouldly going forward -->
+    <Using Remove="FluentAssertions" />
+  </ItemGroup>
+
 </Project>
