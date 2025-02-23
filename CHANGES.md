@@ -13,6 +13,7 @@ Most lines should begin with one of these words:
   **NOTE:** This package will not upgrade FluentAssertions to 8.x due to license incompatibility.
 - Update Microsoft.NET.Test.Sdk to [17.13.0](https://github.com/microsoft/vstest/releases/tag/v17.13.0).
 - Update Moq to [4.20.72](https://github.com/moq/moq/releases/tag/v4.20.72)
+- Update NUnit to [4.3.2](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-432---dec-28-2024)
 
 ## [3.1.1](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.0..release/3.1.1)
 - Update Coverlet to [6.0.2](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.2)
