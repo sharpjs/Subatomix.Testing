@@ -1,5 +1,5 @@
 // Copyright Subatomix Research Inc.
-// SPDX-License-Identifier: ISC
+// SPDX-License-Identifier: MIT
 
 namespace Subatomix.Testing;
 

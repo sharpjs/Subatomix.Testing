@@ -7,6 +7,7 @@ Most lines should begin with one of these words:
 <!--
 -->
 ## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.1..HEAD)
+- Change license from MIT to MIT.
 - Add Shoudly as an alternative to FluentAssertions.
 - Update Coverlet to [6.0.4](https://github.com/coverlet-coverage/coverlet/releases/tag/v6.0.4)
 - Update FluentAssertions to [7.2.0](https://github.com/fluentassertions/fluentassertions/releases/tag/7.2.0)\
@@ -125,5 +126,5 @@ Initial release.
 
 <!--
   Copyright Subatomix Research Inc.
-  SPDX-License-Identifier: ISC
+  SPDX-License-Identifier: MIT
 -->

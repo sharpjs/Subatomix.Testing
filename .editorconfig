@@ -4,7 +4,7 @@
 # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 #
 # Copyright Subatomix Research Inc.
-# SPDX-License-Identifier: ISC
+# SPDX-License-Identifier: MIT
 
 root = true
 
@@ -48,7 +48,7 @@ dotnet_style_allow_multiple_blank_lines_experimental              = false:warnin
 dotnet_style_allow_statement_immediately_after_block_experimental = false:warning # was true
 
 [*.cs]
-file_header_template = Copyright Subatomix Research Inc.\nSPDX-License-Identifier: ISC
+file_header_template = Copyright Subatomix Research Inc.\nSPDX-License-Identifier: MIT
 
 [dotnet-tools.json]
 insert_final_newline = false

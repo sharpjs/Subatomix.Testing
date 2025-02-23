@@ -6,7 +6,7 @@
     This script is similar to a makefile.
 
     Copyright Subatomix Research Inc.
-    SPDX-License-Identifier: ISC
+    SPDX-License-Identifier: MIT
 #>
 [CmdletBinding(DefaultParameterSetName="Test")]
 param (
