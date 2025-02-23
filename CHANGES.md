@@ -124,6 +124,6 @@ Known issue: [nunit-console #1178](https://github.com/nunit/nunit-console/issues
 Initial release.
 
 <!--
-  Copyright 2023 Subatomix Research Inc.
+  Copyright Subatomix Research Inc.
   SPDX-License-Identifier: ISC
 -->

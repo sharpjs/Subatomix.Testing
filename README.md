@@ -89,6 +89,6 @@ public class SomeTests : TestHarnessBase
 ```
 
 <!--
-  Copyright 2023 Subatomix Research Inc.
+  Copyright Subatomix Research Inc.
   SPDX-License-Identifier: ISC
 -->

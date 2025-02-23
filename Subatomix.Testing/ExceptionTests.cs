@@ -1,4 +1,4 @@
-// Copyright 2023 Subatomix Research Inc.
+// Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: ISC
 
 #if !NET8_0_OR_GREATER

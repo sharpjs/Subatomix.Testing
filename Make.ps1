@@ -5,7 +5,7 @@
 .DESCRIPTION
     This script is similar to a makefile.
 
-    Copyright 2023 Subatomix Research Inc.
+    Copyright Subatomix Research Inc.
     SPDX-License-Identifier: ISC
 #>
 [CmdletBinding(DefaultParameterSetName="Test")]
