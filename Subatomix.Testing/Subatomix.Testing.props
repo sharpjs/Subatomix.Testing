@@ -1,7 +1,7 @@
 <Project>
 
   <!--
-    Copyright 2023 Subatomix Research Inc.
+    Copyright Subatomix Research Inc.
     SPDX-License-Identifier: ISC
   -->
 
@@ -15,6 +15,7 @@
     <Using Include="FluentAssertions.FluentActions" Static="true" />
     <Using Include="Moq" />
     <Using Include="NUnit.Framework" />
+    <Using Include="Shouldly" />
     <Using Include="Subatomix.Testing" />
   </ItemGroup>
 
