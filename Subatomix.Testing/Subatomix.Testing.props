@@ -7,7 +7,7 @@
 
   <!--
     Imported early: Directory.Build.props -> this -> SDK .props -> project
-    https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
+    https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
   -->
 
   <ItemGroup>

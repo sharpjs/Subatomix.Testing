@@ -131,7 +131,7 @@ public abstract class ExceptionTests<T>
     #pragma warning disable IDE0079
 
     // Allow obsolete BinaryFormatter to test legacy deserialization constructor
-    // https://docs.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0011
+    // https://learn.microsoft.com/en-us/dotnet/fundamentals/syslib-diagnostics/syslib0011
     #pragma warning disable SYSLIB0011
 
     private static T Roundtrip(T obj)

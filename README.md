@@ -46,7 +46,7 @@ private class TestHarness : TestHarnessBase
 This pattern enables some cool things:
 
 - I can enable the C# 8
-  [nullability checker](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
+  [nullability checker](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references)
   and not have to sprinkle `?` and `!` all over the test code.
 
 - Tests can run in parallel, regardless of test fixture lifetime, since there
