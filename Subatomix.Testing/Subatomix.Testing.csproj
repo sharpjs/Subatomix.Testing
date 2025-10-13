@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector"     PrivateAssets="none" />
-    <PackageReference Include="FluentAssertions"       PrivateAssets="none" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="none" />
     <PackageReference Include="Moq"                    PrivateAssets="none" />
     <PackageReference Include="NUnit"                  PrivateAssets="none" />
@@ -37,11 +36,6 @@
   <ItemGroup>
     <None     Remove="Subatomix.Testing.props" />
     <Content Include="Subatomix.Testing.props" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Use Shouldly going forward -->
-    <Using Remove="FluentAssertions" />
   </ItemGroup>
 
 </Project>

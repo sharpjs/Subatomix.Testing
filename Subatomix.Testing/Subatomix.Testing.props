@@ -11,8 +11,6 @@
   -->
 
   <ItemGroup>
-    <Using Include="FluentAssertions" />
-    <Using Include="FluentAssertions.FluentActions" Static="true" />
     <Using Include="Moq" />
     <Using Include="NUnit.Framework" />
     <Using Include="Shouldly" />

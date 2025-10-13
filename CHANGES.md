@@ -9,6 +9,7 @@ Most lines should begin with one of these words:
 -->
 
 ## [4.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.2.0..release/4.0.0)
+- **BREAKING:** Remove FluentAssertions support.
 
 ## [3.2.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.1.1..release/3.2.0)
 - Change license from MIT to MIT.
