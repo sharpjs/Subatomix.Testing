@@ -19,6 +19,10 @@ internal static class TcpPort
             return client.ConnectAsync(IPAddress.Loopback, port).Wait(TimeoutMs)
                 && client.Connected;
         }
+        catch (AggregateException e) when (e.GetBaseException() is SocketException)
+        {
+            return false;
+        }
         catch (SocketException)
         {
             return false;
