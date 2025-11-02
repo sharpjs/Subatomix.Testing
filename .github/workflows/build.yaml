@@ -84,7 +84,7 @@ jobs:
 
       - name: Test
         run: >
-          dotnet test --no-build -c Release
+          dotnet test --no-build -c Release -f net8.0
           --settings Coverlet.runsettings
           --results-directory ${{ runner.temp }}/coverage/raw
 
