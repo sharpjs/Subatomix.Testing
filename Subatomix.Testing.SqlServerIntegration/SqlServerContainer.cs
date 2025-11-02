@@ -54,6 +54,10 @@ internal class SqlServerContainer : IDisposable
 
     private string Start()
     {
+        new ExternalProgram("docker")
+            .WithArguments("pull", "mcr.microsoft.com/mssql/server:2022-latest")
+            .Run(expecting: 0);
+
         var id = new ExternalProgram("docker")
             .WithArguments("run", "-d", "--rm", "--name", "test-mssql")
             .WithArguments(Publish(_ports))
