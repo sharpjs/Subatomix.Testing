@@ -37,11 +37,11 @@ jobs:
 
     steps:
       - name: Check Out Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         #url: https://github.com/actions/checkout
 
       - name: Configure .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         #url: https://github.com/actions/setup-dotnet
         with:
           dotnet-version: |
@@ -58,6 +58,21 @@ jobs:
           -p:Counter=${{ github.run_number }}
           -p:RepositoryCommit=${{ github.sha }}
 
+      - name: Publish Version
+        shell: pwsh
+        run: |
+          Add-Content $env:GITHUB_STEP_SUMMARY @"
+          |            |                                   |
+          |:-----------|:----------------------------------|
+          | Version    | ``$env:VERSION``                  |
+          | Branch/Tag | ``$env:GITHUB_REF`` $env:HEAD_REF |
+          | Commit     | ``$env:GITHUB_SHA`` $env:HEAD_SHA |`n`n
+          "@
+        env:
+          VERSION:  ${{ steps.stamp.outputs.version }}
+          HEAD_REF: ${{ github.event.pull_request && format('(head = `{0}`)', github.event.pull_request.head.ref) }}
+          HEAD_SHA: ${{ github.event.pull_request && format('(head = `{0}`)', github.event.pull_request.head.sha) }}
+
       - name: Restore NuGet Packages
         run: dotnet restore
 
@@ -65,16 +80,16 @@ jobs:
         run: >
           dotnet build --no-restore -c Release
           -p:TreatWarningsAsErrors=true
-          -p:PackageOutputPath=${{ runner.temp }}\dist
+          -p:PackageOutputPath=${{ runner.temp }}\dist\
 
       - name: Test
         run: >
           dotnet test --no-build -c Release
           --settings Coverlet.runsettings
-          --results-directory:${{ runner.temp }}\coverage\raw
+          --results-directory ${{ runner.temp }}\coverage\raw
 
       - name: Prepare Coverage Report
-        uses: danielpalme/ReportGenerator-GitHub-Action@5
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5
         #url: https://github.com/danielpalme/ReportGenerator-GitHub-Action
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
@@ -83,8 +98,12 @@ jobs:
           verbosity: Warning
 
       - name: Publish Coverage Summary
-        run: >
-          Get-Content $env:REPORT_PATH -Raw >> $env:GITHUB_STEP_SUMMARY 
+        shell: pwsh
+        run: |
+          Add-Content $env:GITHUB_STEP_SUMMARY @(
+            "## Coverage`n"
+            Select-String '^#' $env:REPORT_PATH -NotMatch -Raw
+          )
         env:
           REPORT_PATH: ${{ runner.temp }}\coverage\SummaryGithub.md
 
