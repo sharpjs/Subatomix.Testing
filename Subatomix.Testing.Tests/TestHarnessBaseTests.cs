@@ -1,6 +1,8 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
+using NUnit.Framework.Interfaces;
+
 namespace Subatomix.Testing;
 
 [TestFixture]
@@ -52,6 +54,8 @@ public static class TestHarnessBaseTests
         mock.Object.Dispose();
 
         mock.VerifyAll();
+
+        PreventMoqFinalizerException(mock);
     }
 
     [Test]
@@ -69,6 +73,8 @@ public static class TestHarnessBaseTests
             .Message.ShouldBe("Boom!");
 
         mock.VerifyAll();
+
+        PreventMoqFinalizerException(mock);
     }
 
     [Test]
@@ -86,6 +92,8 @@ public static class TestHarnessBaseTests
             .Message.ShouldBe("Pow!");
 
         mock.VerifyAll();
+
+        PreventMoqFinalizerException(mock);
     }
 
     [Test]
@@ -104,7 +112,14 @@ public static class TestHarnessBaseTests
 
         mock.VerifyAll();
 
-        // Prevent warning from marking test as inconclusive or skipped
+        PreventMoqFinalizerException(mock);
+
+        // The second exception (in CleanUp) is converted to a test warning
+        TestContext.CurrentContext.Result.Assertions.ShouldContain(a
+            => a.Status == AssertionStatus.Warning
+        );
+
+        // The warning was expected, so convert the test from warned to passed
         Assert.Pass();
     }
 
@@ -119,6 +134,8 @@ public static class TestHarnessBaseTests
         mock.Object.SimulateFinalizer();
 
         mock.VerifyAll();
+
+        PreventMoqFinalizerException(mock);
     }
 
     [Test]
@@ -158,4 +175,13 @@ public static class TestHarnessBaseTests
     }
 
     internal class TestHarness : TestHarnessBase { }
+
+    private static void PreventMoqFinalizerException(Mock<TestHarness> mock)
+    {
+        // Ensure that the mock is left in a state where its finalizer can run
+        // successfully.  This prevents an intermittent test process crash.
+
+        mock.Reset();
+        mock.Setup(h => h.CleanUp(false)).CallBase();
+    }
 }

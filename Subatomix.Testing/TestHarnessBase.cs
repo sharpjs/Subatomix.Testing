@@ -61,6 +61,7 @@ public abstract class TestHarnessBase : IDisposable
     internal void SimulateFinalizer()
     {
         Dispose(managed: false);
+        GC.SuppressFinalize(this);
     }
 
     /// <summary>
