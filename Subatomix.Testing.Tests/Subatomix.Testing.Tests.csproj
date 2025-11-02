@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Subatomix.Testing\Subatomix.Testing.csproj" />
+    <ProjectReference Include="..\Subatomix.Testing.SqlServerIntegration\Subatomix.Testing.SqlServerIntegration.csproj" />
   </ItemGroup>
 
 </Project>

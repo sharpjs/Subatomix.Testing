@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Subatomix SQL Server Integration Testing Helper</Description>
+    <PackageDescription>Preferred dependencies and utilities for automated testing.</PackageDescription>
+    <TargetFrameworks>net4.8.1;net6.0;net8.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Subatomix.Testing\Subatomix.Testing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(DesignTimeBuild)' != 'true'">
+    <!-- Limit project dependencies to same major version, not same-or-later -->
+    <PackageReference Include="Subatomix.Testing" VersionOverride="[$(PackageVersion), 5.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" PrivateAssets="none" />
+    <PackageReference Include="Nullable"                 PrivateAssets="all" />
+  </ItemGroup>
+
+  <!--
+    Must undo some things set by Microsoft.NET.Test.Sdk; else, this project
+    will not create a NuGet package on build.
+  -->
+  <ItemGroup>
+    <ProjectCapability Remove="TestContainer" />
+  </ItemGroup>
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+</Project>
