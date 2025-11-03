@@ -117,6 +117,7 @@ function Invoke-Test {
         "--nologo"
         "--no-build"
         "--configuration:$Configuration"
+        "--framework:net8.0"
         if ($Coverage) {
             "--settings:Coverlet.runsettings"
             "--results-directory:coverage\raw"
