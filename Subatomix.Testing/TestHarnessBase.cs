@@ -1,7 +1,6 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework.Internal;
 
 namespace Subatomix.Testing;
