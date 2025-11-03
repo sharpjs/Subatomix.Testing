@@ -2,12 +2,8 @@
 // SPDX-License-Identifier: MIT
 
 using System.Collections.Concurrent;
-using System.Data;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
-using Microsoft.Data.SqlClient;
 
 namespace Subatomix.Testing.SqlServerIntegration;
 
@@ -29,7 +25,7 @@ public static class TestSqlServer
     private static SqlCredential?      _sqlCredential;
 
     private static readonly ConcurrentDictionary<string, TemporaryDatabase>
-        _temporaryDatabases = new();
+        TemporaryDatabasesInternal = new();
 
     /// <summary>
     ///   Gets whether the test SQL Server instance is ready for use.
@@ -105,7 +101,7 @@ public static class TestSqlServer
     /// </exception>
     public static IReadOnlyDictionary<string, TemporaryDatabase> TemporaryDatabases
     {
-        get { RequireReady(); return _temporaryDatabases; }
+        get { RequireReady(); return TemporaryDatabasesInternal; }
     }
 
     /// <summary>
@@ -225,42 +221,18 @@ public static class TestSqlServer
             return;
 
         var isPersistent = _container is null;
-        var exceptions   = null as List<Exception>;
 
-        foreach (var database in _temporaryDatabases.Values.ToArray())
-        {
-            try
-            {
-                database.Dispose(remove: isPersistent);
-            }
-            catch (Exception e)
-            {
-                (exceptions ??= new()).Add(e);
-            }
-        }
+        foreach (var database in TemporaryDatabasesInternal.Values.ToArray())
+            DisposeDatabaseBestEffort(database, remove: isPersistent);
 
-        try
-        {
-            _container?.Dispose();
-        }
-        catch (Exception e)
-        {
-            (exceptions ??= new()).Add(e);
-        }
+        DisposeContainerBestEffort();
 
         _container      = null;
         _masterDatabase = null;
         _netCredential  = null;
         _sqlCredential  = null;
-        _temporaryDatabases.Clear();
 
-        if (exceptions is null)
-            return;
-
-        if (exceptions.Count is 1)
-            ExceptionDispatchInfo.Capture(exceptions[0]).Throw();
-
-        throw new AggregateException(exceptions);
+        TemporaryDatabasesInternal.Clear();
     }
 
     /// <summary>
@@ -303,12 +275,13 @@ public static class TestSqlServer
         try
         {
             database.Create();
-            _temporaryDatabases.TryAdd(database.Name, database);
+            TemporaryDatabasesInternal.TryAdd(database.Name, database);
+            ThrowForTestingIfRequested();
             return database;
         }
         catch
         {
-            database.Dispose();
+            DisposeDatabaseBestEffort(database, remove: true);
             throw;
         }
     }
@@ -359,12 +332,13 @@ public static class TestSqlServer
         try
         {
             await database.CreateAsync(cancellation);
-            _temporaryDatabases.TryAdd(database.Name, database);
+            TemporaryDatabasesInternal.TryAdd(database.Name, database);
+            ThrowForTestingIfRequested();
             return database;
         }
         catch
         {
-            await database.DisposeAsync();
+            DisposeDatabaseBestEffort(database, remove: true);
             throw;
         }
     }
@@ -378,11 +352,32 @@ public static class TestSqlServer
         return new(name, _masterDatabase);
     }
 
-    internal static void OnTemporaryDatabaseDisposed(string name)
+    internal static void DisposeContainerBestEffort()
     {
-        _temporaryDatabases.TryRemove(name, out _);
+        try
+        {
+            _container?.Dispose();
+            ThrowForTestingIfRequested();
+        }
+        catch { } // best effort only
     }
 
+    internal static void DisposeDatabaseBestEffort(TemporaryDatabase database, bool remove)
+    {
+        try
+        {
+            database.Dispose(remove);
+            ThrowForTestingIfRequested();
+        }
+        catch { } // best effort only
+    }
+
+    internal static void OnTemporaryDatabaseDisposed(string name)
+    {
+        TemporaryDatabasesInternal.TryRemove(name, out _);
+    }
+
+    [ExcludeFromCodeCoverage] // Environment-dependent
     internal static bool IsLocalSqlServerListening()
     {
     #if NETCOREAPP
@@ -404,5 +399,25 @@ public static class TestSqlServer
             "TestSqlServer is not ready.  " +
             "Did you forget to invoke TestSqlServer.SetUp()?"
         );
+    }
+
+    private static bool _shouldThrowForTesting;
+
+    internal static void ThrowForTestingAtNextOpportunity()
+    {
+        _shouldThrowForTesting = true;
+    }
+
+    private static void ThrowForTestingIfRequested()
+    {
+        try
+        {
+            if (_shouldThrowForTesting)
+                throw new Exception("An exception was thrown for testing purposes.");
+        }
+        finally
+        {
+            _shouldThrowForTesting = false;
+        }
     }
 }

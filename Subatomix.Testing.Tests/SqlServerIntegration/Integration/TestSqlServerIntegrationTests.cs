@@ -38,6 +38,7 @@ public class TestSqlServerIntegrationTests
         using var container = new SqlServerContainer(TestSqlServer.ServerPort);
 
         TestSqlServer.SetUp();
+        TestSqlServer.SetUp(); // Idempotence check
         TestSqlServer.IsReady                        .ShouldBeTrue();
         TestSqlServer.IsEphemeralContainer           .ShouldBeFalse();
         TestSqlServer.Credential                     .ShouldBeNull();
@@ -45,6 +46,7 @@ public class TestSqlServerIntegrationTests
         TestSqlServer.TemporaryDatabases             .ShouldBeEmpty();
 
         TestSqlServer.TearDown();
+        TestSqlServer.TearDown(); // Idempotence check
         await TestSqlServerShouldNotBeReady();
     }
 
@@ -115,8 +117,10 @@ public class TestSqlServerIntegrationTests
     {
         TestCreateTemporaryDatabase(null,  @"^Temp_");
         TestCreateTemporaryDatabase("Foo", @"^Foo_" );
+        TestCreateTemporaryDatabaseThrowing();
         await TestCreateTemporaryDatabaseAsync(null,  @"^Temp_");
         await TestCreateTemporaryDatabaseAsync("Foo", @"^Foo_" );
+        await TestCreateTemporaryDatabaseAsyncThrowing();
     }
 
     private void TestCreateTemporaryDatabase(string? prefix, string prefixPattern)
@@ -152,6 +156,16 @@ public class TestSqlServerIntegrationTests
         );
     }
 
+    private void TestCreateTemporaryDatabaseThrowing()
+    {
+        TestSqlServer.ThrowForTestingAtNextOpportunity();
+
+        Should.Throw<Exception>(() =>
+        {
+            using (TestSqlServer.CreateTemporaryDatabase()) { }
+        });
+    }
+
     private async Task TestCreateTemporaryDatabaseAsync(string? prefix, string prefixPattern)
     {
         string name;
@@ -183,6 +197,16 @@ public class TestSqlServerIntegrationTests
                 THROW 50000, 'Temporary database was not removed.', 1;
             """
         );
+    }
+
+    private async Task TestCreateTemporaryDatabaseAsyncThrowing()
+    {
+        TestSqlServer.ThrowForTestingAtNextOpportunity();
+
+        await Should.ThrowAsync<Exception>(async () =>
+        {
+            await using (TestSqlServer.CreateTemporaryDatabase()) { }
+        });
     }
 
     private async Task TestSqlServerShouldNotBeReady()

@@ -22,28 +22,15 @@ internal class SqlServerContainer : IDisposable
     public SqlServerContainer(params ushort[] ports)
     {
         _ports     = ports;
-
         Credential = new("sa", GeneratePassword());
         Id         = Start();
-
-        try
-        {
-            WaitForReady();
-        }
-        catch
-        {
-            try
-            {
-                Stop();
-            }
-            catch { } // Best effort only
-            throw;
-        }
+        EnsureReady();
     }
 
     public virtual void Dispose()
     {
         Stop();
+        WaitUntilEnded();
     }
 
     public string Id { get; }
@@ -76,13 +63,19 @@ internal class SqlServerContainer : IDisposable
             .Run(expecting: 0);
 
         id = id.TrimEnd();
-        if (id.Length is 0)
-            throw new ExternalException(
-                "Failed to start SQL Server container. " +
-                "The docker command did not output a container id."
-            );
-
+        ValidateId(id);
         return id;
+    }
+
+    internal static void ValidateId(string id)
+    {
+        if (id.Length is not 0)
+            return;
+
+        throw new ExternalException(
+            "Failed to start SQL Server container. " +
+            "The docker command did not output a container id."
+        );
     }
 
     private static string[] Publish(ushort[] ports)
@@ -99,7 +92,29 @@ internal class SqlServerContainer : IDisposable
         return args;
     }
 
-    private void WaitForReady()
+    [ExcludeFromCodeCoverage] // Nondeterministic
+    private void EnsureReady()
+    {
+        try
+        {
+            WaitUntilReady();
+        }
+        catch
+        {
+            try { Dispose(); } catch { } // Best effort only
+            throw;
+        }
+    }
+
+    private void Stop()
+    {
+        new ExternalProgram("docker")
+            .WithArguments("kill", Id)
+            .Run(expecting: 0);
+    }
+
+    [ExcludeFromCodeCoverage] // Nondeterministic
+    private void WaitUntilReady()
     {
         var deadline = DateTime.UtcNow + new TimeSpan(ReadyWaitTime);
 
@@ -126,12 +141,9 @@ internal class SqlServerContainer : IDisposable
         }
     }
 
-    private void Stop()
+    [ExcludeFromCodeCoverage] // Nondeterministic
+    private void WaitUntilEnded()
     {
-        new ExternalProgram("docker")
-            .WithArguments("kill", Id)
-            .Run(expecting: 0);
-
         var deadline = DateTime.UtcNow + new TimeSpan(EndedWaitTime);
 
         for (;;)

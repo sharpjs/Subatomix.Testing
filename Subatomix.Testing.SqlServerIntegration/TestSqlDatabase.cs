@@ -1,8 +1,6 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
-using System.Data;
-
 namespace Subatomix.Testing.SqlServerIntegration;
 
 /// <summary>
@@ -10,7 +8,7 @@ namespace Subatomix.Testing.SqlServerIntegration;
 /// </summary>
 public class TestSqlDatabase
 {
-    private protected TestSqlDatabase(string name, string connectionString)
+    internal TestSqlDatabase(string name, string connectionString)
     {
         if (name is null)
             throw new ArgumentNullException(nameof(name));

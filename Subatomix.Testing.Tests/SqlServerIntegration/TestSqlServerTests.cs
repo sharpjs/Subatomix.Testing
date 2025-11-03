@@ -7,13 +7,13 @@ namespace Subatomix.Testing.SqlServerIntegration;
 public class TestSqlServerTests
 {
     [Test]
-    public void IsReady_WhenNotReady()
+    public void IsReady_NotReady()
     {
         TestSqlServer.IsReady.ShouldBeFalse();
     }
 
     [Test]
-    public void Credential_WhenNotReady()
+    public void Credential_NotReady()
     {
         Should.Throw<InvalidOperationException>(() =>
         {
@@ -22,7 +22,7 @@ public class TestSqlServerTests
     }
 
     [Test]
-    public void MasterDatabase_WhenNotReady()
+    public void MasterDatabase_NotReady()
     {
         Should.Throw<InvalidOperationException>(() =>
         {
@@ -31,7 +31,7 @@ public class TestSqlServerTests
     }
 
     [Test]
-    public void TemporaryDatabases_WhenNotReady()
+    public void TemporaryDatabases_NotReady()
     {
         Should.Throw<InvalidOperationException>(() =>
         {
@@ -40,7 +40,7 @@ public class TestSqlServerTests
     }
 
     [Test]
-    public void CreateTemporaryDatabase_WhenNotReady()
+    public void CreateTemporaryDatabase_NotReady()
     {
         Should.Throw<InvalidOperationException>(() =>
         {
@@ -49,11 +49,25 @@ public class TestSqlServerTests
     }
 
     [Test]
-    public async Task CreateTemporaryDatabaseAsync_WhenNotReady()
+    public async Task CreateTemporaryDatabaseAsync_NotReady()
     {
         await Should.ThrowAsync<InvalidOperationException>(async () =>
         {
             await TestSqlServer.CreateTemporaryDatabaseAsync();
         });
+    }
+
+    [Test, NonParallelizable]
+    public void DisposeContainerBestEffort_Throws()
+    {
+        TestSqlServer.ThrowForTestingAtNextOpportunity();
+        TestSqlServer.DisposeContainerBestEffort();
+    }
+
+    [Test, NonParallelizable]
+    public void DisposeDatabaseBestEffort_Throws()
+    {
+        TestSqlServer.ThrowForTestingAtNextOpportunity();
+        TestSqlServer.DisposeDatabaseBestEffort(new("Foo", new("Server=Bar")), remove: false);
     }
 }

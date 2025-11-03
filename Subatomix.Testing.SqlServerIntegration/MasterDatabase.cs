@@ -24,7 +24,7 @@ public sealed class MasterDatabase : TestSqlDatabase
     internal Task RemoveDatabaseAsync(string name, CancellationToken cancellation = default)
         => ExecuteAsync(GetRemoveDatabaseCommand(name), cancellation);
 
-    private static string GetCreateDatabaseCommand(string name)
+    internal static string GetCreateDatabaseCommand(string name)
     {
         if (name is null)
             throw new ArgumentNullException(nameof(name));
@@ -40,7 +40,7 @@ public sealed class MasterDatabase : TestSqlDatabase
         """;
     }
 
-    private static string GetRemoveDatabaseCommand(string name)
+    internal static string GetRemoveDatabaseCommand(string name)
     {
         if (name is null)
             throw new ArgumentNullException(nameof(name));

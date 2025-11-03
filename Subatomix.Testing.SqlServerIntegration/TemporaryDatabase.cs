@@ -1,9 +1,6 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.SqlClient;
-
 namespace Subatomix.Testing.SqlServerIntegration;
 
 /// <summary>
@@ -20,11 +17,8 @@ public sealed class TemporaryDatabase : TestSqlDatabase, IDisposable, IAsyncDisp
     private          bool           _isDisposed;
 
     internal TemporaryDatabase(string name, MasterDatabase masterDatabase)
-        : base(name, GetConnectionString(name))
+        : base(name, GetConnectionString(name, masterDatabase))
     {
-        if (masterDatabase is null)
-            throw new ArgumentNullException(nameof(masterDatabase));
-
         _masterDatabase = masterDatabase;
     }
 
@@ -60,12 +54,14 @@ public sealed class TemporaryDatabase : TestSqlDatabase, IDisposable, IAsyncDisp
         return base.ExecuteAsync(sql, cancellation);
     }
 
-    private static string GetConnectionString(string name)
+    private static string GetConnectionString(string name, MasterDatabase masterDatabase)
     {
         if (name is null)
             throw new ArgumentNullException(nameof(name));
+        if (masterDatabase is null)
+            throw new ArgumentNullException(nameof(masterDatabase));
 
-        return new SqlConnectionStringBuilder(TestSqlServer.MasterDatabase.ConnectionString)
+        return new SqlConnectionStringBuilder(masterDatabase.ConnectionString)
         {
             InitialCatalog = name
         }
@@ -95,6 +91,9 @@ public sealed class TemporaryDatabase : TestSqlDatabase, IDisposable, IAsyncDisp
 
     internal void Dispose(bool remove)
     {
+        if (_isDisposed)
+            return;
+
         if (remove)
             Remove();
 
@@ -116,6 +115,9 @@ public sealed class TemporaryDatabase : TestSqlDatabase, IDisposable, IAsyncDisp
         await DisposeAsync(remove: true);
     }
 
+    // Used by:
+    // - TestSqlServer, to skip removal when the server is ephemeral
+    // - Unit tests, to avoid needing a live server
     internal async ValueTask DisposeAsync(bool remove)
     {
         if (remove)

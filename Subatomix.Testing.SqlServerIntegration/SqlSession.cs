@@ -1,10 +1,7 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
-using System.Data;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.SqlClient;
 
 namespace Subatomix.Testing.SqlServerIntegration;
 

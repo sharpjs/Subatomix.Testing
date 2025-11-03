@@ -8,6 +8,9 @@ namespace Subatomix.Testing.SqlServerIntegration;
 
 internal static class TcpPort
 {
+    [ExcludeFromCodeCoverage]
+    // - Difficult to exercise all paths on a single platform
+    // - Tested indirectly by TestSqlServerIntegrationTests
     public static bool IsListening(ushort port)
     {
         const int TimeoutMs = 1000;
