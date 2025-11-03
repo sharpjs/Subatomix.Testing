@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: MIT
 
 using System.Net;
-using Microsoft.Data.SqlClient;
 
 namespace Subatomix.Testing.SqlServerIntegration;
 

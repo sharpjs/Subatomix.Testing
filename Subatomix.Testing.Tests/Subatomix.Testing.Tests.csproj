@@ -16,4 +16,9 @@
     <ProjectReference Include="..\Subatomix.Testing.SqlServerIntegration\Subatomix.Testing.SqlServerIntegration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="System.Data"/>
+    <Using Include="Microsoft.Data.SqlClient"/>
+  </ItemGroup>
+
 </Project>

@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <Using Include="System.Data"/>
-    <Using Include="System.Diagnostics.CodeAnalysis"/>
     <Using Include="Microsoft.Data.SqlClient"/>
   </ItemGroup>
 
