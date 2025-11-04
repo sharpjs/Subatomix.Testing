@@ -52,7 +52,7 @@ public class TestSqlServerIntegrationTests
 
     [Test]
     [NonParallelizable]
-    public async Task SetUpTearDown_Password()
+    public async Task SetUp_TearDown_Password()
     {
         using var container = new SqlServerContainer(TestSqlServer.ServerPort);
 
@@ -94,7 +94,7 @@ public class TestSqlServerIntegrationTests
 
     [Test]
     [NonParallelizable]
-    public async Task SetUpTearDown_Container()
+    public async Task SetUp_TearDown_Container()
     {
         // Let TestSqlServer create its own ephemeral container
 
@@ -121,6 +121,9 @@ public class TestSqlServerIntegrationTests
         await TestCreateTemporaryDatabaseAsync(null,  @"^Temp_");
         await TestCreateTemporaryDatabaseAsync("Foo", @"^Foo_" );
         await TestCreateTemporaryDatabaseAsyncThrowing();
+        TestSqlSessionErrorNoProcedureName();
+        TestSqlSessionErrorWithProcedureName();
+        TestSqlSessionUnexpectedDispose();
     }
 
     private void TestCreateTemporaryDatabase(string? prefix, string prefixPattern)
@@ -205,7 +208,48 @@ public class TestSqlServerIntegrationTests
 
         await Should.ThrowAsync<Exception>(async () =>
         {
-            await using (TestSqlServer.CreateTemporaryDatabase()) { }
+            await using (await TestSqlServer.CreateTemporaryDatabaseAsync()) { }
+        });
+    }
+
+    private void TestSqlSessionErrorNoProcedureName()
+    {
+        using var session = new SqlSession(
+            TestSqlServer.MasterDatabase.ConnectionString,
+            TestSqlServer.SqlCredential
+        );
+
+        Should.Throw<DataException>(() =>
+        {
+            session.Execute("THROW 50000, 'Test error.', 1;");
+        });
+    }
+
+    private void TestSqlSessionErrorWithProcedureName()
+    {
+        using var session = new SqlSession(
+            TestSqlServer.MasterDatabase.ConnectionString,
+            TestSqlServer.SqlCredential
+        );
+
+        Should.Throw<DataException>(() =>
+        {
+            session.Execute("CREATE PROCEDURE dbo.Foo AS ?");
+        });
+    }
+
+    private void TestSqlSessionUnexpectedDispose()
+    {
+        using var session = new SqlSession(
+            TestSqlServer.MasterDatabase.ConnectionString,
+            TestSqlServer.SqlCredential
+        );
+
+        session.Execute("DECLARE @x int;");
+
+        Should.Throw<DataException>(() =>
+        {
+            session.Connection.Dispose();
         });
     }
 

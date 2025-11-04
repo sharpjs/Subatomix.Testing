@@ -26,6 +26,8 @@ internal sealed class SqlSession : IDisposable, IAsyncDisposable
         _command.RetryLogicProvider = RetryLogicProvider;
     }
 
+    internal SqlConnection Connection => _connection;
+
     private static SqlRetryLogicBaseProvider RetryLogicProvider { get; }
         = SqlConfigurableRetryFactory.CreateExponentialRetryProvider(new()
         {
@@ -135,6 +137,7 @@ internal sealed class SqlSession : IDisposable, IAsyncDisposable
 #endif
 
     [Conditional("DEBUG")]
+    [ExcludeFromCodeCoverage] // Uncoverable by design in Release build.
     private static void AssumeNotNull([NotNull] object? obj)
     {
         if (obj is null)

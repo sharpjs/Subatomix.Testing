@@ -15,7 +15,7 @@ internal class ExternalProgram
     {
         if (name is null)
             throw new ArgumentNullException(nameof(name));
-        if (name.Length == 0)
+        if (name.Length is 0)
             throw new ArgumentException("Argument must not be empty.", nameof(name));
 
         Info = new ProcessStartInfo
@@ -64,8 +64,18 @@ internal class ExternalProgram
         using var process = new Process { StartInfo = Info };
 
         var output = new StringBuilder();
-        process.OutputDataReceived += (_, e) => output.AppendLine(e.Data);
-        process.ErrorDataReceived  += (_, e) => output.AppendLine(e.Data);
+
+        void OnDataReceived(object? _, DataReceivedEventArgs e)
+        {
+            // e.Data is null when the stream is closed
+            if (e.Data is null)
+                return;
+
+            output.AppendLine(e.Data);
+        }
+
+        process.OutputDataReceived += OnDataReceived;
+        process.ErrorDataReceived  += OnDataReceived;
 
         process.Start();
         process.BeginOutputReadLine();
@@ -85,6 +95,7 @@ internal class ExternalProgram
         return output;
     }
 
+#if NEEDED
     public T Run<T>(Func<int, string, T> projection)
     {
         if (projection is null)
@@ -94,17 +105,18 @@ internal class ExternalProgram
 
         return projection(exitCode, output);
     }
+#endif
 
-    private Exception OnExitedWithCode(int exitCode, string? output = null)
+    private Exception OnExitedWithCode(int exitCode, string output)
     {
         var message = new StringBuilder()
             .AppendFormat("{0} exited with code {1}.", Info.FileName, exitCode);
 
-        if (output is { Length: > 0 })
+        if (output.Length > 0)
             message
                 .AppendLine()
                 .AppendLine("----- BEGIN OUTPUT -----")
-                .AppendLine(output)
+                .Append/**/(output) // output already ends with a newline
                 .AppendLine("----- END OUTPUT -----");
 
         return new ExternalException(message.ToString())
