@@ -112,17 +112,19 @@ function Invoke-Build {
 function Invoke-Test {
     Write-Phase "Test$(if ($Coverage) {" + Coverage"})"
     Remove-Item coverage\raw -Recurse -ErrorAction Ignore
-    Invoke-DotNet -Arguments @(
-        "test"
-        "--nologo"
-        "--no-build"
-        "--configuration:$Configuration"
-        "--framework:net8.0"
-        if ($Coverage) {
-            "--settings:Coverlet.runsettings"
-            "--results-directory:coverage\raw"
-        }
-    )
+    foreach ($Framework in $IsWindows ? "net481", "net6.0", "net8.0" : "net6.0", "net8.0") {
+        Invoke-DotNet -Arguments @(
+            "test"
+            "--nologo"
+            "--no-build"
+            "--configuration:$Configuration"
+            "--framework:$Framework"
+            if ($Coverage) {
+                "--settings:Coverlet.runsettings"
+                "--results-directory:coverage\raw"
+            }
+        )
+    }
 }
 
 function Export-CoverageReport {
