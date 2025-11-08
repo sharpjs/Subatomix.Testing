@@ -37,8 +37,22 @@ public class TestSqlServerIntegrationTests
     {
         using var container = new SqlServerContainer(TestSqlServer.ServerPort);
 
+        // Any transport
         TestSqlServer.SetUp();
         TestSqlServer.SetUp(); // Idempotence check
+        TestSqlServer.IsReady                        .ShouldBeTrue();
+        TestSqlServer.IsEphemeralContainer           .ShouldBeFalse();
+        TestSqlServer.Credential                     .ShouldBeNull();
+        TestSqlServer.MasterDatabase.ConnectionString.ShouldContain("Integrated Security=True");
+        TestSqlServer.TemporaryDatabases             .ShouldBeEmpty();
+
+        TestSqlServer.TearDown();
+        TestSqlServer.TearDown(); // Idempotence check
+        await TestSqlServerShouldNotBeReady();
+
+        // TCP only
+        TestSqlServer.SetUp(requireTcp: true);
+        TestSqlServer.SetUp(requireTcp: true); // Idempotence check
         TestSqlServer.IsReady                        .ShouldBeTrue();
         TestSqlServer.IsEphemeralContainer           .ShouldBeFalse();
         TestSqlServer.Credential                     .ShouldBeNull();

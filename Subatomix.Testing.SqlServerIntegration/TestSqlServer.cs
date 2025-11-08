@@ -107,6 +107,16 @@ public static class TestSqlServer
     /// <summary>
     ///   Sets up access to the test SQL Server instance.
     /// </summary>
+    /// <param name="requireTcp">
+    ///   <para>
+    ///     Whether to require the use of TCP transport when detecting an
+    ///     existing local SQL Server default instance.
+    ///   </para>
+    ///   <para>
+    ///     This parameter has no effect if the environment variable
+    ///     <c>MSSQL_SA_PASSWORD</c> is defined.
+    ///   </para>
+    /// </param>
     /// <remarks>
     ///   <para>
     ///     Invoke this method from a test suite's one-time setup method,
@@ -133,11 +143,13 @@ public static class TestSqlServer
     ///     <item>
     ///       <term>Existing Server via Integrated Authentication</term>
     ///       <description>
-    ///         Else, if a process is listening on TCP port 1433 or the Windows
-    ///         named pipe <c>\\.\pipe\sql\query</c>, this method assumes that
-    ///         a local SQL Server default instance is running and that the
-    ///         current process can authenticate as the system administrator
-    ///         using integrated authentication.
+    ///         Else, this method attempts to detect a local SQL Server default
+    ///         instance, assuming that the instance supports integrated
+    ///         authentication and that the current user has sufficient
+    ///         privileges to run tests.  If the <paramref name="requireTcp"/>
+    ///         argument is <see langword="true"/>, the detection checks only
+    ///         whether a process is listening on TCP port 1433.  Otherwise,
+    ///         the detection uses all supported transports.
     ///       </description>
     ///     </item>
     ///     <item>
@@ -154,7 +166,7 @@ public static class TestSqlServer
     /// <exception cref="ExternalException">
     ///   An error occurred starting an ephemeral SQL Server container.
     /// </exception>
-    public static void SetUp()
+    public static void SetUp(bool requireTcp = false)
     {
         if (IsReady)
             return;
@@ -163,23 +175,23 @@ public static class TestSqlServer
 
         if (TryGetPasswordFromEnvironment(out var password))
         {
-            // Scenario A: Environment variable MSSQL_SA_PASSWORD present.
+            // Scenario A: Environment variable MSSQL_SA_PASSWORD defined.
             // => Assume that a local SQL Server default instance is running.
             //    Use the given password to authenticate as SA.
             _netCredential = new("sa", password);
             _sqlCredential = _netCredential.ToSqlCredential();
         }
-        else if (IsLocalSqlServerListening())
+        else if (IsLocalSqlServerListening(requireTcp))
         {
-            // Scenario B: Process listening on port 1433 or named pipe.
+            // Scenario B: Process listening on port 1433 or other transport.
             // => Assume that a local SQL Server default instance is running
             //    and supports integrated authentication.  Assume that the
-            //    current user has suffucient privileges to run tests.
+            //    current user has sufficient privileges to run tests.
             connectionString.IntegratedSecurity = true;
         }
         else
         {
-            // Scenario C: No process listening on port 1433 or named pipe.
+            // Scenario C: Nothing listening on port 1433 or other transport.
             // => Start an ephemeral SQL Server container on port 1433 using a
             //    generated SA password.
             _container     = new(ServerPort);
@@ -383,15 +395,29 @@ public static class TestSqlServer
     }
 
     [ExcludeFromCodeCoverage] // Environment-dependent
-    internal static bool IsLocalSqlServerListening()
+    internal static bool IsLocalSqlServerListening(bool requireTcp = false)
     {
-    #if NETCOREAPP
         return TcpPort.IsListening(ServerPort)
-            || OperatingSystem.IsWindows() && File.Exists(ServerPipe);
-    #else
-        return TcpPort.IsListening(ServerPort)
-            || File.Exists(ServerPipe);
-    #endif
+            || !requireTcp && CanConnectWithIntegratedAuthentication();
+    }
+
+    [ExcludeFromCodeCoverage] // Environment-dependent
+    internal static bool CanConnectWithIntegratedAuthentication()
+    {
+        const string ConnectionString
+            = "Data Source=.;Integrated Security=True;Connect Timeout=1;"
+            + "Encrypt=Optional;Application Name=Integration Tests Server Detection";
+
+        try
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open(SqlConnectionOverrides.OpenWithoutRetry);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     [MemberNotNull(nameof(_masterDatabase))]
