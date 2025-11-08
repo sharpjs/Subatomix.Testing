@@ -160,9 +160,8 @@ public static class TestSqlServer
             return;
 
         var connectionString = new SqlConnectionStringBuilder { DataSource = "." };
-        var password         = Environment.GetEnvironmentVariable(PasswordName);
 
-        if (!string.IsNullOrEmpty(password))
+        if (TryGetPasswordFromEnvironment(out var password))
         {
             // Scenario A: Environment variable MSSQL_SA_PASSWORD present.
             // => Assume that a local SQL Server default instance is running.
@@ -350,6 +349,12 @@ public static class TestSqlServer
         var name = RandomHelpers.GenerateDatabaseName(prefix);
 
         return new(name, _masterDatabase);
+    }
+
+    private static bool TryGetPasswordFromEnvironment([MaybeNullWhen(false)] out string password)
+    {
+        password = Environment.GetEnvironmentVariable(PasswordName);
+        return !string.IsNullOrEmpty(password);
     }
 
     internal static void DisposeContainerBestEffort()
