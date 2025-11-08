@@ -8,15 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Subatomix.Testing\Subatomix.Testing.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(DesignTimeBuild)' != 'true'">
-    <!-- Limit project dependencies to same major version, not same-or-later -->
-    <PackageReference Include="Subatomix.Testing" VersionOverride="[$(PackageVersion), 5.0.0)" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" PrivateAssets="none" />
     <PackageReference Include="Nullable"                 PrivateAssets="all" />
   </ItemGroup>
@@ -33,6 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Using Remove="Moq" />
+    <Using Remove="NUnit.Framework" />
+    <Using Remove="Shouldly" />
+    <Using Remove="Subatomix.Testing" />
     <Using Include="System.Data"/>
     <Using Include="Microsoft.Data.SqlClient"/>
   </ItemGroup>
