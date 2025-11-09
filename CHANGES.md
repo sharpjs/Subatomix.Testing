@@ -10,6 +10,8 @@ Most lines should begin with one of these words:
 
 ## [4.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.2.0..release/4.0.0)
 - **BREAKING:** Remove FluentAssertions support.
+- Add package **Subatomix.Testing.SqlServerIntegration** to provide easy access
+  to a local SQL Server instance for integration testing.
 - Update NUnit to [4.4.0](https://docs.nunit.org/articles/nunit/release-notes/framework.html#nunit-440---aug-6-2025)
 - Update NUnit3TestAdapter to [5.2.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio-and-dotnet---version-520---october-6-2025).
 
