@@ -107,16 +107,6 @@ public static class TestSqlServer
     /// <summary>
     ///   Sets up access to the test SQL Server instance.
     /// </summary>
-    /// <param name="requireTcp">
-    ///   <para>
-    ///     Whether to require the use of TCP transport when detecting an
-    ///     existing local SQL Server default instance.
-    ///   </para>
-    ///   <para>
-    ///     This parameter has no effect if the environment variable
-    ///     <c>MSSQL_SA_PASSWORD</c> is defined.
-    ///   </para>
-    /// </param>
     /// <remarks>
     ///   <para>
     ///     Invoke this method from a test suite's one-time setup method,
@@ -135,9 +125,8 @@ public static class TestSqlServer
     ///       <description>
     ///         If the environment variable <c>MSSQL_SA_PASSWORD</c> is
     ///         defined, this method assumes that a local SQL Server default
-    ///         instance is running and that the current process can
-    ///         authenticate as the system administrator (<c>sa</c>) using the
-    ///         given password.
+    ///         instance is running and that tests can authenticate as the
+    ///         system administrator (<c>sa</c>) using the given password.
     ///       </description>
     ///     </item>
     ///     <item>
@@ -146,19 +135,16 @@ public static class TestSqlServer
     ///         Else, this method attempts to detect a local SQL Server default
     ///         instance, assuming that the instance supports integrated
     ///         authentication and that the current user has sufficient
-    ///         privileges to run tests.  If the <paramref name="requireTcp"/>
-    ///         argument is <see langword="true"/>, the detection checks only
-    ///         whether a process is listening on TCP port 1433.  Otherwise,
-    ///         the detection uses all supported transports.
+    ///         privileges to run tests.
     ///       </description>
     ///     </item>
     ///     <item>
     ///       <term>Ephemeral Server</term>
     ///       <description>
     ///         Else, this method assumes that a <c>docker</c> command exists
-    ///         and runs Linux containers.  This method uses the command to
-    ///         start an ephemeral Linux SQL Server container on TCP port 1433
-    ///         with a random SA password.
+    ///         and can run Linux containers.  This method uses the command to
+    ///         start an ephemeral Linux SQL Server container with a random
+    ///         system administrator password.
     ///       </description>
     ///     </item>
     ///   </list>
@@ -166,7 +152,7 @@ public static class TestSqlServer
     /// <exception cref="ExternalException">
     ///   An error occurred starting an ephemeral SQL Server container.
     /// </exception>
-    public static void SetUp(bool requireTcp = false)
+    public static void SetUp()
     {
         if (IsReady)
             return;
@@ -181,7 +167,7 @@ public static class TestSqlServer
             _netCredential = new("sa", password);
             _sqlCredential = _netCredential.ToSqlCredential();
         }
-        else if (IsLocalSqlServerListening(requireTcp))
+        else if (IsLocalSqlServerListening())
         {
             // Scenario B: Process listening on port 1433 or other transport.
             // => Assume that a local SQL Server default instance is running
@@ -192,8 +178,8 @@ public static class TestSqlServer
         else
         {
             // Scenario C: Nothing listening on port 1433 or other transport.
-            // => Start an ephemeral SQL Server container on port 1433 using a
-            //    generated SA password.
+            // => Start an ephemeral SQL Server container listening on port
+            //    1433 using a random SA password.
             _container     = new(ServerPort);
             _netCredential = _container.Credential;
             _sqlCredential = _netCredential.ToSqlCredential();
@@ -395,10 +381,10 @@ public static class TestSqlServer
     }
 
     [ExcludeFromCodeCoverage] // Environment-dependent
-    internal static bool IsLocalSqlServerListening(bool requireTcp = false)
+    internal static bool IsLocalSqlServerListening()
     {
         return TcpPort.IsListening(ServerPort)
-            || !requireTcp && CanConnectWithIntegratedAuthentication();
+            || CanConnectWithIntegratedAuthentication();
     }
 
     [ExcludeFromCodeCoverage] // Environment-dependent
