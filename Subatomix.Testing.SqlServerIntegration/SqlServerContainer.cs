@@ -19,39 +19,18 @@ internal sealed class SqlServerContainer : IDisposable
         Collation     = "Latin1_General_100_CI_AI_SC_UTF8",
         MemoryLimitMb = "2048";
 
-    // Allow only one container at a time to avoid port conflicts
-    private static readonly Semaphore
-        Semaphore = new(1, 1, "Subatomix.Testing.SqlServerIntegration.SqlServerContainer");
-
-    [ExcludeFromCodeCoverage] // Nondeterministic
     public SqlServerContainer(params ushort[] ports)
     {
-        Semaphore.WaitOne();
-        try
-        {
-            _ports     = ports;
-            Credential = new("sa", GeneratePassword());
-            Id         = Start();
-            EnsureReady();
-        }
-        catch
-        {
-            Semaphore.Release();
-            throw;
-        }
+        _ports     = ports;
+        Credential = new("sa", GeneratePassword());
+        Id         = Start();
+        EnsureReady();
     }
 
     public void Dispose()
     {
-        try
-        {
-            Stop();
-            WaitUntilEnded();
-        }
-        finally
-        {
-            Semaphore.Release();
-        }
+        Stop();
+        WaitUntilEnded();
     }
 
     public string Id { get; }
