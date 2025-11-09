@@ -9,7 +9,7 @@ namespace Subatomix.Testing.SqlServerIntegration;
 using static FormattableString;
 using static RandomHelpers;
 
-internal class SqlServerContainer : IDisposable
+internal sealed class SqlServerContainer : IDisposable
 {
     private const long
         ReadyWaitTime =      TimeSpan.TicksPerMinute,
@@ -19,18 +19,39 @@ internal class SqlServerContainer : IDisposable
         Collation     = "Latin1_General_100_CI_AI_SC_UTF8",
         MemoryLimitMb = "2048";
 
+    // Allow only one container at a time to avoid port conflicts
+    private static readonly Semaphore
+        Semaphore = new(1, 1, "Subatomix.Testing.SqlServerIntegration.SqlServerContainer");
+
+    [ExcludeFromCodeCoverage] // Nondeterministic
     public SqlServerContainer(params ushort[] ports)
     {
-        _ports     = ports;
-        Credential = new("sa", GeneratePassword());
-        Id         = Start();
-        EnsureReady();
+        Semaphore.WaitOne();
+        try
+        {
+            _ports     = ports;
+            Credential = new("sa", GeneratePassword());
+            Id         = Start();
+            EnsureReady();
+        }
+        catch
+        {
+            Semaphore.Release();
+            throw;
+        }
     }
 
-    public virtual void Dispose()
+    public void Dispose()
     {
-        Stop();
-        WaitUntilEnded();
+        try
+        {
+            Stop();
+            WaitUntilEnded();
+        }
+        finally
+        {
+            Semaphore.Release();
+        }
     }
 
     public string Id { get; }
