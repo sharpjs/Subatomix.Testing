@@ -19,18 +19,37 @@ internal sealed class SqlServerContainer : IDisposable
         Collation     = "Latin1_General_100_CI_AI_SC_UTF8",
         MemoryLimitMb = "2048";
 
+    private readonly GlobalLock _lock;
+
+    [ExcludeFromCodeCoverage] // Nondeterministic
     public SqlServerContainer(params ushort[] ports)
     {
-        _ports     = ports;
-        Credential = new("sa", GeneratePassword());
-        Id         = Start();
-        EnsureReady();
+        _lock = new("SqlServerContainer");
+        try
+        {
+            _ports     = ports;
+            Credential = new("sa", GeneratePassword());
+            Id         = Start();
+            EnsureReady();
+        }
+        catch
+        {
+            _lock.Dispose();
+            throw;
+        }
     }
 
     public void Dispose()
     {
-        Stop();
-        WaitUntilEnded();
+        try
+        {
+            Stop();
+            WaitUntilEnded();
+        }
+        finally
+        {
+            _lock.Dispose();
+        }
     }
 
     public string Id { get; }
