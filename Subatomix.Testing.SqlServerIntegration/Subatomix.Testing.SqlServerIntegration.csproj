@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <!--
+    Copyright Subatomix Research Inc.
+    SPDX-License-Identifier: MIT
+  -->
+
   <PropertyGroup>
     <Description>Subatomix SQL Server Integration Testing Helper</Description>
     <PackageDescription>Easy temporary SQL Server databases for integration testing.</PackageDescription>
