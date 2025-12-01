@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <Description>Subatomix SQL Server Integration Testing Helper</Description>
-    <PackageDescription>Preferred dependencies and utilities for automated testing.</PackageDescription>
+    <PackageDescription>Easy temporary SQL Server databases for integration testing.</PackageDescription>
+    <PackageTags>$(PackageTags) integration sql server database</PackageTags>
     <TargetFrameworks>net4.8.1;net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>

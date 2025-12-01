@@ -16,7 +16,9 @@
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
     <None Include="..\LICENSE.txt" LinkBase="Properties"
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
-    <None Include="..\README.md" LinkBase="Properties"
+    <None Include="..\README.md" LinkBase="Properties" Condition="!Exists('README.md')"
+          Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
+    <None Update="README.md" Condition="Exists('README.md')"
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
   </ItemGroup>
 
