@@ -64,6 +64,6 @@
   <PropertyGroup>
     <StampFilePath>$(MSBuildThisFileDirectory)Stamp.props</StampFilePath>
   </PropertyGroup>
-  <Import Project="$(StampFilePath)" Condition="Exists('$(StampFilePath)')"/>
+  <Import Project="$(StampFilePath)" Condition="Exists('$(StampFilePath)')" />
 
 </Project>
