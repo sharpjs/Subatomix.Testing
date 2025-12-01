@@ -18,17 +18,6 @@
     <PackageReference Include="Nullable"                 PrivateAssets="all" />
   </ItemGroup>
 
-  <!--
-    Must undo some things set by Microsoft.NET.Test.Sdk; else, this project
-    will not create a NuGet package on build.
-  -->
-  <ItemGroup>
-    <ProjectCapability Remove="TestContainer" />
-  </ItemGroup>
-  <PropertyGroup>
-    <IsTestProject>false</IsTestProject>
-  </PropertyGroup>
-
   <ItemGroup>
     <Using Include="System.Data"/>
     <Using Include="Microsoft.Data.SqlClient"/>
