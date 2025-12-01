@@ -18,7 +18,7 @@
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
     <None Include="..\README.md" LinkBase="Properties" Condition="!Exists('README.md')"
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
-    <None Update="README.md" Condition="Exists('README.md')"
+    <None Include="README.md" Condition="Exists('README.md')"
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
   </ItemGroup>
 
