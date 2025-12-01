@@ -25,15 +25,15 @@
     <PackageReference Include="Shouldly"               PrivateAssets="none" />
   </ItemGroup>
 
-  <!--
-    Must undo some things set by Microsoft.NET.Test.Sdk; else, this project
-    will not create a NuGet package on build.
-  -->
+  <!-- Undo things set by NuGet packages that would make this project unpackable -->
   <ItemGroup>
     <ProjectCapability Remove="TestContainer" />
   </ItemGroup>
   <PropertyGroup>
+    <TestProject>false</TestProject>
     <IsTestProject>false</IsTestProject>
+    <IsTestingPlatformApplication>false</IsTestingPlatformApplication>
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <ItemGroup>

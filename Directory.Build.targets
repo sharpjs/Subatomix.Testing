@@ -11,6 +11,11 @@
     https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
   -->
 
+  <!-- Undo things set by NuGet packages that would make this project unpackable -->
+  <PropertyGroup>
+    <OutputType Condition="'$(IsTestProject)' != 'true'">Library</OutputType>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
     <None Include="..\icon.png" LinkBase="Properties"
           Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
