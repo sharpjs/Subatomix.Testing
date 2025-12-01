@@ -30,7 +30,7 @@
     <GlobalPackageReference Include="Subatomix.Build.Versioning.Semantic" Version="1.1.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+  <ItemGroup>
     <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
