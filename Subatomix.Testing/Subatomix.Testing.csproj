@@ -13,6 +13,9 @@
     <ContentTargetFolders>build</ContentTargetFolders>
   </PropertyGroup>
 
+  <!-- Simulate .props import from package -->
+  <Import Project="Subatomix.Testing.props" />
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector"     PrivateAssets="none" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="none" />

@@ -30,10 +30,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Remove="Moq" />
-    <Using Remove="NUnit.Framework" />
-    <Using Remove="Shouldly" />
-    <Using Remove="Subatomix.Testing" />
     <Using Include="System.Data"/>
     <Using Include="Microsoft.Data.SqlClient"/>
   </ItemGroup>
