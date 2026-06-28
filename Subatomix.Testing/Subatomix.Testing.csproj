@@ -8,37 +8,42 @@
   <PropertyGroup>
     <Description>Subatomix Testing Utilities</Description>
     <PackageDescription>Preferred dependencies and utilities for automated testing.</PackageDescription>
-    <TargetFrameworks>net481;net6.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ContentTargetFolders>build</ContentTargetFolders>
   </PropertyGroup>
 
-  <!-- Simulate .props import from package -->
-  <Import Project="Subatomix.Testing.props" />
-
   <ItemGroup>
-    <PackageReference Include="coverlet.collector"     PrivateAssets="none" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="none" />
-    <PackageReference Include="Moq"                    PrivateAssets="none" />
-    <PackageReference Include="NUnit"                  PrivateAssets="none" />
-    <PackageReference Include="NUnit3TestAdapter"      PrivateAssets="none" />
-    <PackageReference Include="Shouldly"               PrivateAssets="none" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk"                    PrivateAssets="none" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" PrivateAssets="none" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport"    PrivateAssets="none" />
+    <PackageReference Include="Moq"                                       PrivateAssets="none" />
+    <PackageReference Include="NUnit"                                     PrivateAssets="none" />
+    <PackageReference Include="NUnit3TestAdapter"                         PrivateAssets="none" />
+    <PackageReference Include="Shouldly"                                  PrivateAssets="none" />
   </ItemGroup>
 
   <!-- Undo things set by NuGet packages that would make this project unpackable -->
   <ItemGroup>
     <ProjectCapability Remove="TestContainer" />
+    <Content Remove="@(Content->WithMetadataValue('Link', 'testhost.exe'))" />
+    <Content Remove="@(Content->WithMetadataValue('Link', 'testhost.dll'))" />
+    <Content Remove="@(Content->WithMetadataValue('Link', 'testhost.x86.exe'))" />
+    <Content Remove="@(Content->WithMetadataValue('Link', 'testhost.x86.dll'))" />
   </ItemGroup>
   <PropertyGroup>
-    <TestProject>false</TestProject>
     <IsTestProject>false</IsTestProject>
     <IsTestingPlatformApplication>false</IsTestingPlatformApplication>
-    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None     Remove="Subatomix.Testing.props" />
     <Content Include="Subatomix.Testing.props" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Moq" />
+    <Using Include="NUnit.Framework" />
+    <Using Include="Shouldly" />
   </ItemGroup>
 
 </Project>

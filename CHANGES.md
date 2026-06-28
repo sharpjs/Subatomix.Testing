@@ -4,9 +4,11 @@ This file documents all notable changes.
 Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
-<!--
-## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.2.0..HEAD)
--->
+## [Unreleased](https://github.com/sharpjs/Subatomix.Testing/compare/release/4.0.0..HEAD)
+- **BREAKING:** Change from VSTest to Microsoft.Testing.Platform.
+- **BREAKING:** Change from Coverlet to Microsoft Code Coverage.
+- Update NUnit to [4.6.1](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio-and-dotnet---version-620---march-21-2026)
+- Update NUnit3TestAdapter to [6.2.0](https://docs.nunit.org/articles/vs-test-adapter/AdapterV4-Release-Notes.html#nunit3-test-adapter-for-visual-studio-and-dotnet---version-620---march-21-2026).
 
 ## [4.0.0](https://github.com/sharpjs/Subatomix.Testing/compare/release/3.2.0..release/4.0.0)
 - **BREAKING:** Remove FluentAssertions support.

@@ -10,6 +10,14 @@
     https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
   -->
 
+  <PropertyGroup>
+    <!--
+      Enable NUnit support for Microsoft.Testing.Platform
+      https://learn.microsoft.com/en-us/dotnet/core/testing/migrating-vstest-microsoft-testing-platform
+    -->
+    <EnableNUnitRunner>true</EnableNUnitRunner>
+  </PropertyGroup>
+
   <ItemGroup>
     <Using Include="Moq" />
     <Using Include="NUnit.Framework" />

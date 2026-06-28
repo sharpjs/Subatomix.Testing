@@ -45,6 +45,10 @@ param (
     # Update .NET CLI 'local tool' plugins.
     [Parameter(Mandatory, ParameterSetName="UpdateLocalTools")]
     [switch] $UpdateLocalTools
+,
+    # Show what would be done rather than doing it.
+    [Parameter(ParameterSetName="Clean")]
+    [switch] $WhatIf
 )
 
 #Requires -Version 5
@@ -101,6 +105,7 @@ function Invoke-Clean {
         "-e", "*.suo",        # Keep Visual Studio <  2015 local options
         "-e", "*.user",       # Keep Visual Studio <  2015 local options
         "-e", ".vs/"          # Keep Visual Studio >= 2015 local options
+        if ($WhatIf -or $WhatIfPreference) { "-n" }
     )
 }
 
@@ -112,16 +117,16 @@ function Invoke-Build {
 function Invoke-Test {
     Write-Phase "Test$(if ($Coverage) {" + Coverage"})"
     Remove-Item coverage\raw -Recurse -ErrorAction Ignore
-    foreach ($Framework in $IsWindows ? "net481", "net6.0", "net8.0" : "net6.0", "net8.0") {
+    foreach ($Framework in $IsWindows ? "net481", "net8.0", "net10.0" : "net8.0", "net10.0") {
         Invoke-DotNet -Arguments @(
             "test"
-            "--nologo"
             "--no-build"
-            "--configuration:$Configuration"
-            "--framework:$Framework"
+            "--configuration", $Configuration
+            "--framework",     $Framework
             if ($Coverage) {
-                "--settings:Coverlet.runsettings"
-                "--results-directory:coverage\raw"
+                "--coverage"
+                "--coverage-output-format", "cobertura"
+                "--results-directory",      "coverage\raw"
             }
         )
     }
@@ -132,9 +137,9 @@ function Export-CoverageReport {
     Invoke-DotNet -Arguments "tool", "restore"
     Invoke-DotNet -Arguments @(
         "reportgenerator"
-        "-reports:coverage\raw\**\coverage.opencover.xml"
+        "-reports:coverage\raw\*.cobertura.xml"
         "-targetdir:coverage"
-        "-reporttypes:Html;JsonSummary"
+        "-reporttypes:JsonSummary;Html_Dark"
         "-verbosity:Warning"
     )
     $Summary = (Get-Content coverage\Summary.json -Raw | ConvertFrom-Json).summary
